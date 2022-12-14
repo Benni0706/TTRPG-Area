@@ -1,4 +1,14 @@
-<nav class="bg-red-700">
-    <a class="bg-red" href="/">Startseite</a>
-    <a href="/dnd">D&D-Area</a>
+<nav class="bg-rosso text-2xl flex">
+    <a class="hover:bg-bloodred p-4 font-bold" href="/">Startseite</a>
+    <a class="hover:bg-bloodred p-4 font-bold" href="/dnd">D&D-Area</a>
+    <span class="group p-4 ml-auto">
+        <% if (logged_in) { %>
+            <a href="/logout" class="group-hover:inline-block hidden rounded-lg hover:bg-bloodred mr-4">Logout</a>
+            <a href="/account" class="group-hover:inline-block hidden rounded-lg hover:bg-bloodred mr-4">Account</a>
+            <a class="hover:bg-bloodred rounded-lg font-bold">
+            <%= typeof username !='undefined' ? username : 'def' %>
+        <% } else {%>
+            <a class="hover:bg-bloodred rounded-lg font-bold" href="/login">Login</a>
+        <% } %>
+    </span>
 </nav>

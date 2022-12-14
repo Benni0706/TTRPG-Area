@@ -2,6 +2,14 @@
 module.exports = {
   content: ['./views/**/*.{ejs,html,js}'],
   theme: {
+    colors: {
+      'gun': '#22333B',
+      'dark': '#0F0E0E',
+      'rosso': '#D00000',
+      'bloodred': '#A30000',
+      'white': '#FFFFFF',
+      'blue': '#0645AD',
+    },
     extend: {},
   },
   plugins: [],

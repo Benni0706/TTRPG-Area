@@ -16,7 +16,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: #e5e7eb;
+  border-color: currentColor;
   /* 2 */
 }
 
@@ -513,21 +513,139 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.bg-red-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+.float-right {
+  float: right;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.m-6 {
+  margin: 1.5rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flow-root {
+  display: flow-root;
+}
+
+.hidden {
+  display: none;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-l {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.border-8 {
+  border-width: 8px;
+}
+
+.border-rosso {
+  --tw-border-opacity: 1;
+  border-color: rgb(208 0 0 / var(--tw-border-opacity));
+}
+
+.bg-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 14 14 / var(--tw-bg-opacity));
+}
+
+.bg-rosso {
+  --tw-bg-opacity: 1;
+  background-color: rgb(208 0 0 / var(--tw-bg-opacity));
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-14 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
   font-weight: 700;
 }
 
-.text-blue-900 {
+.text-blue {
   --tw-text-opacity: 1;
-  color: rgb(30 58 138 / var(--tw-text-opacity));
+  color: rgb(6 69 173 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:bg-bloodred:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 0 0 / var(--tw-bg-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+
+.group:hover .group-hover\:inline-block {
+  display: inline-block;
 }
