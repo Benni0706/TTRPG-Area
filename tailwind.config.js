@@ -7,7 +7,7 @@ module.exports = {
       'dark': '#0F0E0E',
       'rosso': '#D00000',
       'bloodred': '#A30000',
-      'white': '#FFFFFF',
+      'text': '#7D8CA3',
       'blue': '#0645AD',
     },
     extend: {},

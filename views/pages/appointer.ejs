@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Terminplaner</title>
+    <link href="/output.css" rel="stylesheet">
+    <script src="/script.js"></script>
+</head>
+
+<body class="bg-dark h-full">
+    <header class="bg-red">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="grid grid-cols-10 h-full">
+        <div class="h-full col-span-2 grid grid-cols-6 mt-10">
+            <div class="col-start-2 col-end-6 bg-gun my-4 rounded-lg">
+                <p class="text-text text-3xl text-center m-2 mb-4 font-bold">Deine Parties</p>
+                <hr class="border-dark border-2">
+                <div class="h-3/5">
+                    <% parties.forEach(function(party) { %>
+                        <button id="<%= party.par_id %>" onclick="show_party(this)" class="showParty w-full p-2 font-bold text-xl hover:bg-dark text-center text-text">
+                            <%= party.par_name %>
+                        </button><br>
+                    <% }); %>
+                </div>
+                <div class="group grid grid-cols-6">
+                    <span class="col-start-2 col-end-6 text-center text-text text-xl rounded-lg p-2 m-2 group-hover:underline">Party erstellen</span><br>
+                    <form action="/add_party" class="group-hover:grid hidden p-2 w-full col-span-6" method="post">
+                        <label class="text-text" for="party_name">Name</label><br>
+                        <input class="" type="text" id="party_name" name="party_name" required>
+                        <label class="text-text" for="party_code">Beitritts-Code</label><br>
+                        <input class="" type="text" id="party_code" name="party_code" required>
+                        <input class="text-center bg-rosso rounded-lg p-2 m-2 hover:bg-bloodred" type="submit" value="Erstellen">
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <% parties.forEach(function(party) { %>
+            <div id="party<%= party.par_id %>" class="party col-start-3 col-end-10 bg-gun h-full mt-14 rounded-lg grid-cols-10" hidden>
+                <p class="font-bold text-text text-2xl m-4 col-span-4">Termine von <%= party.par_name %></p>
+                <p class="font-bold text-text text-2xl m-4 col-span-6 text-right">Beitrittscode: <%= party.par_code %> </p>
+            </div>
+        <% }); %>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>

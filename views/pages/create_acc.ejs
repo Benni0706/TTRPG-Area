@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bennis Website</title>
+    <title>Account-Erstellung</title>
     <link href="/output.css" rel="stylesheet">
 </head>
 
@@ -12,13 +12,13 @@
         <p>Bitte gib deine Daten an, um einen Account zu erstellen:</p>
         <form class="" action="/create_acc" method="post">
             <label for="create_acc_name">Benutzername</label>
-            <input class="" type="text" id="create_acc_name" name="create_acc_name"><br>
+            <input class="" type="text" id="create_acc_name" name="create_acc_name" required><br>
             <label for="create_acc_mail">E-Mail</label>
-            <input class="" type="text" id="create_acc_mail" name="create_acc_mail"><br>
+            <input class="" type="text" id="create_acc_mail" name="create_acc_mail" required><br>
             <label for="create_acc_password">Passwort</label>
-            <input class="" type="password" id="create_acc_password" name="create_acc_password"><br>
+            <input class="" type="password" id="create_acc_password" name="create_acc_password" required><br>
             <label for="create_acc_password_2">Passwort wiederholen</label>
-            <input class="" type="password" id="create_acc_password_2" name="create_acc_password_2"><br>
+            <input class="" type="password" id="create_acc_password_2" name="create_acc_password_2" required><br>
             <input class="" type="submit" value="Account erstellen">
         </form>
         <p>Du hast bereits einen Account? Dann melde dich <a href="/login" class="text-blue hover:underline">hier</a> an.</p>

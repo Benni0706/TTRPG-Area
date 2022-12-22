@@ -70,7 +70,7 @@ app.post('/create_acc', function (req, res) {
     let password1 = req.body.create_acc_password;
     let password2 = req.body.create_acc_password_2;
     if (username && mail && password1 && password1 == password2) {
-        connection.query('INSERT INTO accounts (acc_name,acc_mail,acc_password) values (?,?,?)', [username,mail,password1], function(error, results, fields) {
+        connection.query('INSERT INTO accounts (acc_name,acc_mail,acc_password) VALUES (?,?,?)', [username, mail, password1], function (error, results, fields) {
             if (error) throw error;
             req.session.logged_in = true;
             req.session.username = username;
@@ -79,19 +79,64 @@ app.post('/create_acc', function (req, res) {
     }
 });
 
-app.get('/logout', function(req, res) {
+app.get('/logout', function (req, res) {
     req.session.logged_in = false;
     req.session.username = undefined;
     res.redirect('/');
 });
 
-app.get('/dnd', function (req, res) {
+app.get('/appointer', function (req, res) {
     if (req.session.logged_in && req.session.username) {
-        res.render('pages/dnd');
+        connection.query('SELECT par_id, par_name, par_code FROM party, members, accounts WHERE par_id = mem_par_id AND mem_acc_id = acc_id AND acc_name = ?', [req.session.username], function (error, results, fields) {
+            if (error) throw error;
+            let length = results.length;
+            res.render('pages/appointer', {
+                logged_in: req.session.logged_in,
+                username: req.session.username,
+                parties: results
+            });
+        });
     } else {
         res.redirect('/login');
     }
-    
+});
+
+app.post('/add_party', function(req, res) {
+    if (req.session.logged_in && req.session.username) {
+        let name = req.body.party_name;
+        let code = req.body.party_code;
+        if (req.body.party_name && req.body.party_code) {
+            connection.query('INSERT INTO party (par_name,par_code) VALUES (?,?)', [name,code], function(error, results, fields) {
+                if (error) throw error;
+            });
+            connection.query('SELECT par_id FROM party where par_name = ? AND par_code = ?', [name,code], function(error, results, fields) {
+                if (error) throw error;
+                var par_id = results[0].par_id;
+                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+                    if (error) throw error;
+                    var acc_id = results[0].acc_id;
+                    connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [acc_id,par_id], function(error, results, fields) {
+                        if (error) throw error;
+                        res.redirect('/appointer');
+                    });
+                });
+            });
+        }
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+app.get('/charsheet', function (req, res) {
+    if (req.session.logged_in && req.session.username) {
+        res.render('pages/charsheet', {
+            logged_in: req.session.logged_in,
+            username: req.session.username,
+        });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 app.listen(8080);
