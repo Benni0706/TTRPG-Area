@@ -1,0 +1,15 @@
+<% dates.forEach(function(date) { %>
+    <div class="border-2 border-dark grid grid-cols-6">
+        <div class="col-span-2 bg-dark text-text p-2 text-xl text-center content-center flex">
+            <p><%= date.dat_date %></p>
+        </div>
+        <div class="col-span-4">
+            <p class="text-text text-lg m-1"><%= date.dat_description %></p>
+            <div class="justify-between flex m-1">
+                <button class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Zusagen</button>
+                <button class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Unsicher</button>
+                <button class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Absagen</button>
+            </div>
+        </div>
+    </div>
+<% }); %>

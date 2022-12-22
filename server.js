@@ -101,6 +101,17 @@ app.get('/appointer', function (req, res) {
     }
 });
 
+app.post('/get_dates', function (req, res) {
+    if (req.session.logged_in && req.session.username) {
+        connection.query('SELECT dat_date, dat_id, dat_description, dat_par_id FROM dates WHERE dat_par_id = ?', [req.body.par_id], function (error, results, fields) {
+            if (error) throw error;
+            res.render('partials/dates', {
+                dates: results,
+            });
+        });
+    }
+});
+
 app.post('/add_party', function(req, res) {
     if (req.session.logged_in && req.session.username) {
         let name = req.body.party_name;

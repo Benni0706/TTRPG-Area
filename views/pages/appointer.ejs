@@ -39,9 +39,14 @@
         </div>
         
         <% parties.forEach(function(party) { %>
-            <div id="party<%= party.par_id %>" class="party col-start-3 col-end-10 bg-gun h-full mt-14 rounded-lg grid-cols-10" hidden>
-                <p class="font-bold text-text text-2xl m-4 col-span-4">Termine von <%= party.par_name %></p>
-                <p class="font-bold text-text text-2xl m-4 col-span-6 text-right">Beitrittscode: <%= party.par_code %> </p>
+            <div id="party<%= party.par_id %>" class="party col-start-3 col-end-10 bg-gun h-full mt-14 rounded-lg" hidden>
+                <div class="justify-between flex">
+                    <span class="font-bold text-text text-2xl m-4 col-span-5"><%= party.par_name %>:</span>
+                    <span class="font-bold text-text text-2xl m-4 col-span-5">Beitrittscode: <%= party.par_code %> </span>
+                </div>
+                <div id="partydates<%= party.par_id %>" class="m-4 w-fit">
+                    
+                </div>
             </div>
         <% }); %>
     </main>

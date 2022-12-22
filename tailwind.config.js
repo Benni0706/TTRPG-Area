@@ -9,6 +9,8 @@ module.exports = {
       'bloodred': '#A30000',
       'text': '#7D8CA3',
       'blue': '#0645AD',
+      'yellow': '#ffcc00',
+      'green': '#009900'
     },
     extend: {},
   },
