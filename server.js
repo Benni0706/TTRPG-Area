@@ -112,6 +112,47 @@ app.post('/get_dates', function (req, res) {
     }
 });
 
+app.post('/get_commitment', function (req, res) {
+    if (req.session.logged_in && req.session.username) {
+        connection.query('SELECT com_status FROM commitments, accounts WHERE com_acc_id = acc_id AND com_dat_id = ? AND acc_name = ?', [req.body.dat_id, req.session.username], function (error, results, fields) {
+            if (error) throw error;
+            if (results.length > 0) {
+            res.send(results[0].com_status);
+            } else {
+                res.send('nö');
+            }
+        });
+    }
+});
+
+app.post('/commit', function (req, res) {
+    if (req.session.logged_in && req.session.username) {
+        connection.query('SELECT count(com_status) FROM commitments, accounts WHERE com_acc_id = acc_id AND com_dat_id = ? AND acc_name = ?', [req.body.dat_id, req.session.username], function (error, results, fields) {
+            if (error) throw error;
+            if (results[0].com_status != 1) {
+                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+                    if (error) throw error;
+                    var acc_id = results[0].acc_id;
+                    connection.query('INSERT INTO commitments (com_acc_id, com_dat_id, com_status) VALUES (?, ?, ?)', [acc_id, req.body.dat_id, req.body.status], function (error, results, fields) {
+                        if (error) throw error;
+                        res.end();
+                    });
+                });
+            } else {
+                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+                    if (error) throw error;
+                    var acc_id = results[0].acc_id;
+                    connection.query('UPDATE commitments SET com_status = ? WHERE com_acc_id = ? AND com_dat_id = ?', [acc_id, req.body.dat_id, req.body.status], function (error, results, fields) {
+                        if (error) throw error;
+                        res.end();
+                    });
+                });
+            }
+        });
+        
+    }
+});
+
 app.post('/add_party', function(req, res) {
     if (req.session.logged_in && req.session.username) {
         let name = req.body.party_name;
