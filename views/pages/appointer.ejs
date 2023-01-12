@@ -14,18 +14,20 @@
     </header>
 
     <main class="grid grid-cols-10 h-full">
-        <div class="h-full col-span-2 grid grid-cols-6 mt-10">
+        <div class="h-full col-span-3 grid grid-cols-6 mt-10">
             <div class="col-start-2 col-end-6 bg-gun my-4 rounded-lg">
                 <p class="text-text text-3xl text-center m-2 mb-4 font-bold">Deine Parties</p>
                 <hr class="border-dark border-2">
-                <div class="h-3/5">
+                <div class="h-1/4">
                     <% parties.forEach(function(party) { %>
-                        <button id="<%= party.par_id %>" onclick="show_party(this)" class="showParty w-full p-2 font-bold text-xl hover:bg-dark text-center text-text">
+                        <button id="<%= party.par_id %>" onclick="show_party(this.id)" class="inline-block w-full p-2 font-bold text-xl hover:bg-dark text-center text-text">
                             <%= party.par_name %>
-                        </button><br>
+                        </button>
+                        <input type="hidden" id="party_name_tmp<%= party.par_id %>" value="<%= party.par_name %>">
+                        <input type="hidden" id="party_code_tmp<%= party.par_id %>" value="<%= party.par_code %>">
                     <% }); %>
                 </div>
-                <div class="group grid grid-cols-6">
+                <div class="group grid grid-cols-6 h-1/4">
                     <span class="col-start-2 col-end-6 text-center text-text text-xl rounded-lg p-2 m-2 group-hover:underline">Party erstellen</span><br>
                     <form action="/add_party" class="group-hover:grid hidden p-2 w-full col-span-6" method="post">
                         <label class="text-text" for="party_name">Name</label><br>
@@ -35,20 +37,23 @@
                         <input class="text-center bg-rosso rounded-lg p-2 m-2 hover:bg-bloodred" type="submit" value="Erstellen">
                     </form>
                 </div>
+                <div class="group grid grid-cols-6 h-1/4">
+                    <span class="col-start-2 col-end-6 text-center text-text text-xl rounded-lg p-2 m-2 group-hover:underline">Party beitreten</span><br>
+                    <form action="/join_party" class="group-hover:grid hidden p-2 w-full col-span-6" method="post">
+                        <label class="text-text" for="party_name_join">Name</label><br>
+                        <input class="" type="text" id="party_name_join" name="party_name_join" required>
+                        <label class="text-text" for="party_code_join">Beitritts-Code</label><br>
+                        <input class="" type="text" id="party_code_join" name="party_code_join" required>
+                        <input class="text-center bg-rosso rounded-lg p-2 m-2 hover:bg-bloodred" type="submit" value="Beitreten">
+                    </form>
+                </div>
             </div>
         </div>
-        
-        <% parties.forEach(function(party) { %>
-            <div id="party<%= party.par_id %>" class="party col-start-3 col-end-10 bg-gun h-full mt-14 rounded-lg" hidden>
-                <div class="justify-between flex">
-                    <span class="font-bold text-text text-2xl m-4 col-span-5"><%= party.par_name %>:</span>
-                    <span class="font-bold text-text text-2xl m-4 col-span-5">Beitrittscode: <%= party.par_code %> </span>
-                </div>
-                <div id="partydates<%= party.par_id %>" class="m-4 w-fit">
-                    
-                </div>
-            </div>
-        <% }); %>
+
+        <div id="dates" class="party col-start-4 col-end-10 bg-gun h-full mt-14 rounded-lg">
+
+        </div>
+
     </main>
 
     <footer>

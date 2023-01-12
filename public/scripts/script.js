@@ -1,66 +1,54 @@
-function show_party (party) {
-    let id = 'party' + party.id;
-    let elements = document.getElementsByClassName('party');
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'none';
-    }
-    let buttons = document.getElementsByClassName('showParty');
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].style.textDecoration = 'none';
-    }
-    document.getElementById(id).style.display = 'block';
-    document.getElementById(party.id).style.textDecoration = 'underline';
-
-    let dates_div_id = 'partydates' + party.id;
+function show_party (party_id) {
     const xhttp = new XMLHttpRequest();
-    const params = 'par_id=' + party.id;
+    const params = "par_id=" + party_id;
     xhttp.onload = function(){
-        document.getElementById(dates_div_id).innerHTML = this.responseText;
-        get_commitments_for_dates();
+        document.getElementById('dates').innerHTML = this.responseText;
+        document.getElementById('partyname').innerHTML = document.getElementById('party_name_tmp' + party_id).getAttribute('value');
+        document.getElementById('partycode').innerHTML = 'Beitrittscode: ' + document.getElementById('party_code_tmp' + party_id).getAttribute('value');
+        document.getElementById('partyid').setAttribute('value', party_id);
     }
-    xhttp.open("POST", "/get_dates", true);
+    xhttp.open("POST", "/appointer", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
 
-function get_commitments_for_dates () {
-    let datedivs = document.getElementsByClassName('datediv');
-    for (var i = 0; i < datedivs.length; i++) {
-        const xhttp = new XMLHttpRequest();
-        const params = 'dat_id=' + datedivs[i].id;
-        xhttp.onload = function(){
-            let zusage_id = 'zusage' + datedivs[0].id;
-            console.log(zusage_id);
-            let unsicher_id = 'unsicher' + datedivs[0].id;
-            let absage_id = 'absage' + datedivs[0].id;
-            console.log(this.responseText);
-            if (this.responseText == 'zusage') {
-                document.getElementById(zusage_id).style.backgroundColor = "009900";
-                document.getElementById(unsicher_id).style.backgroundColor = "22333B";
-                document.getElementById(absage_id).style.backgroundColor = "22333B";
-            } else if (this.responseText == 'unsicher') {
-                document.getElementById(zusage_id).style.backgroundColor = "22333B";
-                document.getElementById(unsicher_id).style.backgroundColor = "ffcc00";
-                document.getElementById(absage_id).style.backgroundColor = "22333B";
-            } else if (this.responseText == 'absage') {
-                document.getElementById(zusage_id).style.backgroundColor = "22333B";
-                document.getElementById(unsicher_id).style.backgroundColor = "22333B";
-                document.getElementById(absage_id).style.backgroundColor = "D00000";
-            }
+function commit (status, dat_id) {
+    const xhttp = new XMLHttpRequest();
+    const params = "dat_id=" + dat_id + "&status=" + status;
+    xhttp.onload = function(){
+        show_party(document.getElementById('partyid').getAttribute('value'));
+    }
+    xhttp.open("POST", "/commit", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
+}
+
+function show_hide_element(id, display_mode, button, text) {
+    if (document.getElementById(id).style.display == display_mode) {
+        document.getElementById(id).style.display = "none";
+        if (typeof button !== 'undefined') {
+            button.innerHTML = text + ' +';
         }
-        xhttp.open("POST", "/get_commitment", true);
-        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhttp.send(params);
+    } else {
+        document.getElementById(id).style.display = display_mode;
+        if (typeof button !== 'undefined') {
+            button.innerHTML = text + ' -';
+        }
     }
 }
 
-function commit (status, id) {
+function add_date() {
     const xhttp = new XMLHttpRequest();
-    const params = 'dat_id=' + id + '&status=' + status;
+    let partyid = document.getElementById('partyid').value;
+    let date_description = document.getElementById('date_description').value;
+    let date_unconverted = new Date(document.getElementById('date_date').value);
+    let date_date = date_unconverted.getDate() + '.' + (date_unconverted.getMonth() + 1) + '.' + date_unconverted.getFullYear();
+    const params = "dat_description=" + date_description + "&dat_date=" + date_date + "&par_id=" + partyid;
+    console.log(params)
     xhttp.onload = function(){
-        window.location.reload();
+        show_party(partyid);
     }
-    xhttp.open("POST", "/commit", true);
+    xhttp.open("POST", "/add_date", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }

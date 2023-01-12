@@ -1,15 +1,79 @@
-<% dates.forEach(function(date) { %>
-    <div id="<%= date.dat_id %>" class="datediv border-2 border-dark grid grid-cols-6">
-        <div class="col-span-2 bg-dark text-text p-2 text-xl text-center content-center flex">
-            <p><%= date.dat_date %></p>
-        </div>
-        <div class="col-span-4">
-            <p class="text-text text-lg m-1"><%= date.dat_description %></p>
-            <div class="justify-between flex m-1">
-                <button id="zusage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('zusage',this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Zusagen</button>
-                <button id="unsicher<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('unsicher',this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Unsicher</button>
-                <button id="absage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('absage',this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Absagen</button>
-            </div>
+<div class="flex justify-between p-2 mb-1">
+    <span class="text-text text-2xl font-bold" id="partyname"></span>
+    <span class="text-text text-2xl font-bold" id="partycode"></span>
+</div>
+<div class="flex">
+    <div class="justify-start grid ml-2 w-1/2 group">
+        <button class="text-text text-2xl" onclick="show_hide_element('add_date_div', 'grid', this, 'Termin hinzufügen')">Termin hinzufügen +</button><br>
+        <div class="justify-center pl-2 hidden" id="add_date_div">
+            <label class="text-text" for="date_date">Datum</label>
+            <input type="date" id="date_date" required><br>
+            <label class="text-text" for="date_description">Beschreibung</label>
+            <input type="text" id="date_description" required>
+            <input class="bg-rosso rounded-lg text-xl p-1 mt-2 hover:bg-bloodred" type="button" onclick="add_date()" value="Hinzufügen">
         </div>
     </div>
-<% }); %>
+    <div class="justify-end flex pr-2 w-1/2">
+        <form action="/leave_party" method="POST">
+            <input id="partyid" type="hidden" name="partyid">  
+            <input class="bg-rosso rounded-lg text-2xl p-1 hover:bg-bloodred" type="submit" value="Verlassen">
+        </form>
+    </div>
+</div>
+<div class="">
+    <% dates.forEach(function(date) { %>
+        <div id="<%= date.dat_id %>" class="m-4 w-fit border-2 border-dark grid grid-cols-6">
+            <div class="col-span-2 bg-dark text-text p-2 text-xl text-center content-center flex">
+                <p><%= date.dat_date %></p>
+            </div>
+            <div class="col-span-4">
+                <p class="text-text text-lg m-1"><%= date.dat_description %></p>
+                <div class="justify-between flex m-1">
+                    <% if (date.com_status == 'zusage') { %> 
+                        <button id="zusage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('zusage', this.name)" class="bg-green text-dark border border-dark border-opacity-30 hover:bg-dark p-1 mx-1">Zusagen</button>
+                        <button id="unsicher<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('unsicher', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Unsicher</button>
+                        <button id="absage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('absage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Absagen</button>
+                    <% } else if (date.com_status == 'unsicher') { %>
+                        <button id="zusage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('zusage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Zusagen</button>
+                        <button id="unsicher<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('unsicher', this.name)" class="bg-yellow text-dark border border-dark border-opacity-30 hover:bg-dark p-1 mx-1">Unsicher</button>
+                        <button id="absage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('absage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Absagen</button>
+                    <% } else if (date.com_status == 'absage') { %>
+                        <button id="zusage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('zusage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Zusagen</button>
+                        <button id="unsicher<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('unsicher', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Unsicher</button>
+                        <button id="absage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('absage', this.name)" class="bg-rosso text-dark border border-dark border-opacity-30 hover:bg-dark p-1 mx-1">Absagen</button>
+                    <% } else { %> 
+                        <button id="zusage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('zusage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Zusagen</button>
+                        <button id="unsicher<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('unsicher', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Unsicher</button>
+                        <button id="absage<%= date.dat_id %>" name="<%= date.dat_id %>" onclick="commit('absage', this.name)" class="border border-dark border-opacity-30 text-text hover:bg-dark p-1 mx-1">Absagen</button>
+                    <% } %> 
+                </div>
+                <% let commitments = date.commitments; %>
+                <% if (typeof commitments != 'undefined') { %> 
+                    <div class="grid grid-cols-3">
+                        <div class="col-span-1 grid justify-center">
+                            <% commitments.forEach(function(commitment) { %>
+                                <% if (commitment.com_status == "zusage") { %> 
+                                    <p class="bg-text w-min rounded-lg m-1 px-1 text-center h-min"><%= commitment.acc_name %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                        <div class="col-span-1 grid justify-center">
+                            <% commitments.forEach(function(commitment) { %>
+                                <% if (commitment.com_status == "unsicher") { %>
+                                    <p class="bg-text w-min rounded-lg m-1 px-1 text-center h-min"><%= commitment.acc_name %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                        <div class="col-span-1 grid justify-center">
+                            <% commitments.forEach(function(commitment) { %>
+                                <% if (commitment.com_status == "absage") { %>
+                                    <p class="bg-text w-min rounded-lg m-1 px-1 text-center h-min"><%= commitment.acc_name %></p>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+    <% }); %>
+</div>

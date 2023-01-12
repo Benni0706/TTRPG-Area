@@ -5,6 +5,7 @@ const app = express();
 const path = require("path");
 const favicon = require('serve-favicon');
 const { request } = require('http');
+const { render } = require('ejs');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'benni',
@@ -46,7 +47,8 @@ app.post('/login', function (req, res) {
             if (error) throw error;
             if (results.length == 1) {
                 req.session.logged_in = true;
-                req.session.username = username;
+                req.session.username = results[0].acc_name;
+                req.session.userid = results[0].acc_id;
                 res.redirect('/');
             } else {
                 req.session.username = username;
@@ -72,9 +74,7 @@ app.post('/create_acc', function (req, res) {
     if (username && mail && password1 && password1 == password2) {
         connection.query('INSERT INTO accounts (acc_name,acc_mail,acc_password) VALUES (?,?,?)', [username, mail, password1], function (error, results, fields) {
             if (error) throw error;
-            req.session.logged_in = true;
-            req.session.username = username;
-            res.redirect('/');
+            res.redirect('/login');
         });
     }
 });
@@ -82,6 +82,7 @@ app.post('/create_acc', function (req, res) {
 app.get('/logout', function (req, res) {
     req.session.logged_in = false;
     req.session.username = undefined;
+    req.session.userid = undefined;
     res.redirect('/');
 });
 
@@ -93,7 +94,7 @@ app.get('/appointer', function (req, res) {
             res.render('pages/appointer', {
                 logged_in: req.session.logged_in,
                 username: req.session.username,
-                parties: results
+                parties: results,
             });
         });
     } else {
@@ -101,55 +102,54 @@ app.get('/appointer', function (req, res) {
     }
 });
 
-app.post('/get_dates', function (req, res) {
+app.post('/appointer', function (req, res) {
     if (req.session.logged_in && req.session.username) {
-        connection.query('SELECT dat_date, dat_id, dat_description, dat_par_id FROM dates WHERE dat_par_id = ?', [req.body.par_id], function (error, results, fields) {
+        connection.query('SELECT dat_date, dat_description, dat_id, com_status FROM dates LEFT JOIN commitments ON dat_id = com_dat_id AND com_acc_id = ? WHERE dat_par_id = ?', [req.session.userid, req.body.par_id], function (error, results, fields) {
             if (error) throw error;
-            res.render('partials/dates', {
-                dates: results,
-            });
+            get_commitments(results, req, res);
         });
+    } else {
+        res.redirect('/login');
     }
 });
 
-app.post('/get_commitment', function (req, res) {
-    if (req.session.logged_in && req.session.username) {
-        connection.query('SELECT com_status FROM commitments, accounts WHERE com_acc_id = acc_id AND com_dat_id = ? AND acc_name = ?', [req.body.dat_id, req.session.username], function (error, results, fields) {
-            if (error) throw error;
-            if (results.length > 0) {
-            res.send(results[0].com_status);
-            } else {
-                res.send('nö');
+function get_commitments (dates, req, res) {
+    connection.query("SELECT com_dat_id, com_acc_id, com_status, acc_name FROM commitments, dates, accounts WHERE com_dat_id = dat_id AND com_acc_id = acc_id AND dat_par_id = ? ORDER BY FIELD(com_status, 'zusage', 'unsicher', 'absage')", [req.body.par_id], function (error, results, fields) {
+        if (error) throw error;
+        for (var i = 0; i < results.length; i++) {
+            for (var k = 0; k < dates.length; k++) {
+                if (dates[k].dat_id == results[i].com_dat_id) {
+                    if (typeof(dates[k].commitments) == "undefined") {
+                        dates[k].commitments = [];
+                    }
+                    dates[k].commitments.push(results[i]);
+                }
             }
+        }
+        res.render('partials/dates', {
+            dates: dates,
         });
-    }
-});
+    });
+}
 
 app.post('/commit', function (req, res) {
     if (req.session.logged_in && req.session.username) {
-        connection.query('SELECT count(com_status) FROM commitments, accounts WHERE com_acc_id = acc_id AND com_dat_id = ? AND acc_name = ?', [req.body.dat_id, req.session.username], function (error, results, fields) {
+        connection.query('SELECT count(*) FROM commitments WHERE com_acc_id = ? AND com_dat_id = ?', [req.session.userid, req.body.dat_id], function (error, results, fields) {
             if (error) throw error;
-            if (results[0].com_status != 1) {
-                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+            if (results[0]['count(*)'] == 0) {
+                connection.query('INSERT INTO commitments (com_acc_id, com_dat_id, com_status) VALUES (?, ?, ?)', [req.session.userid, req.body.dat_id, req.body.status], function (error, results, fields) {
                     if (error) throw error;
-                    var acc_id = results[0].acc_id;
-                    connection.query('INSERT INTO commitments (com_acc_id, com_dat_id, com_status) VALUES (?, ?, ?)', [acc_id, req.body.dat_id, req.body.status], function (error, results, fields) {
-                        if (error) throw error;
-                        res.end();
-                    });
+                    res.end();
                 });
             } else {
-                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+                connection.query('UPDATE commitments SET com_status = ? WHERE com_acc_id = ? AND com_dat_id = ?', [req.body.status, req.session.userid, req.body.dat_id], function (error, results, fields) {
                     if (error) throw error;
-                    var acc_id = results[0].acc_id;
-                    connection.query('UPDATE commitments SET com_status = ? WHERE com_acc_id = ? AND com_dat_id = ?', [acc_id, req.body.dat_id, req.body.status], function (error, results, fields) {
-                        if (error) throw error;
-                        res.end();
-                    });
+                    res.end();
                 });
             }
         });
-        
+    } else {
+        res.send('user not logged in');
     }
 });
 
@@ -164,20 +164,78 @@ app.post('/add_party', function(req, res) {
             connection.query('SELECT par_id FROM party where par_name = ? AND par_code = ?', [name,code], function(error, results, fields) {
                 if (error) throw error;
                 var par_id = results[0].par_id;
-                connection.query('SELECT acc_id FROM accounts WHERE acc_name = ?', [req.session.username], function(error, results, fields) {
+                connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [req.session.userid,par_id], function(error, results, fields) {
                     if (error) throw error;
-                    var acc_id = results[0].acc_id;
-                    connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [acc_id,par_id], function(error, results, fields) {
-                        if (error) throw error;
-                        res.redirect('/appointer');
-                    });
+                    res.redirect('/appointer');
                 });
             });
         }
     }
     else {
-        res.redirect('/login');
+        res.send('user not logged in');
     }
+});
+
+app.post('/join_party', function(req, res) {
+    if (req.session.logged_in && req.session.username) {
+        if (req.body.party_code_join && req.body.party_name_join) {
+            connection.query('SELECT par_id FROM party WHERE par_code = ? AND par_name = ?', [req.body.party_code_join,req.body.party_name_join], function(error, results, fields) {
+                if (error) throw error;
+                let par_id = results[0].par_id;
+                connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [req.session.userid,par_id], function(error, results, fields) {
+                    if (error) throw error;
+                    res.redirect('/appointer');
+                });
+            });
+        }
+    }
+    else {
+        res.send('user not logged in');
+    }
+});
+
+app.post('/leave_party', function(req, res) {
+    if (req.session.logged_in && req.session.username) {
+        if (req.body.partyid) {
+            connection.query('DELETE FROM members WHERE mem_acc_id = ? AND mem_par_id = ?', [req.session.userid,req.body.partyid], function(error, results, fields) {
+                if (error) throw error;
+                res.redirect('/appointer');
+                connection.query('SELECT COUNT(*) FROM members WHERE mem_par_id = ?', [req.body.partyid], function(error, results, fields) {
+                    if (error) throw error;
+                    if (results[0]['COUNT(*)'] == 0) {
+                        connection.query('DELETE FROM party WHERE par_id = ?', [req.body.partyid], function(error, results, fields) {
+                            if (error) throw error;
+                        });
+                    }
+                });
+            });
+        } else {
+            res.redirect("/error");
+        } 
+    }
+    else {
+        res.send('user not logged in');
+    }
+});
+
+app.post('/add_date', function(req, res) {
+    if (req.session.logged_in && req.session.username) {
+        if (req.body.dat_date && req.body.dat_description && req.body.par_id) {
+            connection.query('INSERT INTO dates (dat_date, dat_description, dat_par_id) VALUES (?, ?, ?)', [req.body.dat_date, req.body.dat_description, req.body.par_id], function(error, results, fields) {
+                if (error) throw error;
+                res.end();
+            });
+        } else {
+            res.end();
+        }
+    }
+    else {
+        res.send('user not logged in');
+    }
+});
+
+app.get('/error', function (req, res) {
+    res.send('Es ist ein Fehler aufgetreten');
 });
 
 app.get('/charsheet', function (req, res) {
