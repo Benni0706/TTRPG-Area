@@ -44,11 +44,22 @@ function add_date() {
     let date_unconverted = new Date(document.getElementById('date_date').value);
     let date_date = date_unconverted.getDate() + '.' + (date_unconverted.getMonth() + 1) + '.' + date_unconverted.getFullYear();
     const params = "dat_description=" + date_description + "&dat_date=" + date_date + "&par_id=" + partyid;
-    console.log(params)
     xhttp.onload = function(){
         show_party(partyid);
     }
     xhttp.open("POST", "/add_date", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
+}
+
+function change_attribute(element) {
+    const xhttp = new XMLHttpRequest();
+    let cha_id = document.getElementById('cha_id').value;
+    const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + element.value;
+    xhttp.onload = function(){
+        
+    }
+    xhttp.open("POST", "/change_attribute", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }

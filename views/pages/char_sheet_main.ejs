@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Terminplaner</title>
+    <link href="/output.css" rel="stylesheet">
+    <script src="/script.js"></script>
+    <style>
+        .attrlabel {
+            display: inline-block;
+            margin-right: .5vw;
+            padding-top: 1.5em;
+            width: 20ch;
+        }
+        .attrlabel * {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            top: -3em;
+        }
+    </style>
+</head>
+
+<body class="bg-dark h-full">
+    <header class="bg-red">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="bg-dark">
+        <input type="hidden" id="cha_id" value="<%= character.cha_id %>">
+        <div class="bg-gun p-2 m-3 rounded-lg">
+            <div id="" class="w-min">
+                <input class="text-2xl w-min" type="text" id="cha_name" value="<%= character.cha_name %>"><br>
+                <label class="text-text">Charaktername</label>
+            </div>
+            <div id="" class="">
+                <label class="inline-block mr-2 pt-6 text-text w-40">Klasse(n) & Stufe(n)<input class="inline-block relative w-full" type="text" id="cha_class" value="<%= character.cha_class %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Hintergrund<input class="inline-block relative top--12 w-full" type="text" id="cha_background" value="<%= character.cha_background %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Alter<input class="inline-block relative top--12 w-full" type="text" id="cha_age" value="<%= character.cha_age %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Größe<input class="inline-block relative top--12 w-full" type="text" id="cha_size" value="<%= character.cha_size %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Gewicht<input class="inline-block relative top--12 w-full" type="text" id="cha_weigth" value="<%= character.cha_weight %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Volk<input class="inline-block relative top--12 w-full" type="text" id="cha_race" value="<%= character.cha_race %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Gesinnung<input class="inline-block relative top--12 w-full" type="text" id="cha_alignment" value="<%= character.cha_alignment %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Erfahrungspunkte<input class="inline-block relative top--12 w-full" type="text" id="cha_xp" value="<%= character.cha_xp %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Augenfarbe<input class="inline-block relative top--12 w-full" type="text" id="cha_eye_color" value="<%= character.cha_eye_color %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Hautfarbe<input class="inline-block relative top--12 w-full" type="text" id="cha_skin_color" value="<%= character.cha_skin_color %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Haarfarbe<input class="inline-block relative top--12 w-full" type="text" id="cha_hair_color" value="<%= character.cha_hair_color %>" onchange="change_attribute(this)"></label>
+                <label class="inline-block mr-2 pt-6 text-text w-40">Gottheit<input class="inline-block relative top--12 w-full" type="text" id="cha_god" value="<%= character.cha_god %>" onchange="change_attribute(this)"></label>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>
