@@ -1,0 +1,44 @@
+<% if (typeof spells != "undefined") { %>
+        <div class="p-1 m-1">
+            <input class="w-10 text-center text-text bg-gun" type="text" value="Stufe" readonly>
+            <input class="w-40 text-center text-text bg-gun" type="text" value="Zauber" readonly>
+            <input class="w-24 text-center text-text bg-gun" type="text" value="Zeitaufwand" readonly>
+            <input class="w-20 text-center text-text bg-gun" type="text" value="Reichweite" readonly>
+            <input class="w-24 text-center text-text bg-gun" type="text" value="Dauer" readonly>
+            <input class="w-20 text-center text-text bg-gun" type="text" value="Schaden" readonly>
+        </div>
+        <% spells.forEach( function party(spell) { %>
+            <div class="bg-white p-1 m-1 rounded-lg">
+                <input class="w-10 border text-center" type="text" value="<%= spell.spe_level %>" id="spe_level" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <input class="w-40 border text-center" type="text" value="<%= spell.spe_name %>" id="spe_name" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <input class="w-24 border text-center" type="text" value="<%= spell.spe_casting_time %>" id="spe_casting_time" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <input class="w-20 border text-center" type="text" value="<%= spell.spe_range %>" id="spe_range" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <input class="w-24 border text-center" type="text" value="<%= spell.spe_duration %>" id="spe_duration" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <input class="w-20 border text-center" type="text" value="<%= spell.spe_damage %>" id="spe_damage" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                <button class="hover:opacity-80 font-bold" onclick="show_hide_element('spell_edit_' + this.value, 'block', this, '')" value="<%= spell.spe_id %>">&#8897</button>
+                <div id="spell_edit_<%= spell.spe_id %>" class="hidden my-2">
+                    <div class="grid grid-cols-3">
+                        <div class="col-span-1 justify-items-center grid">
+                            <label>Benötigt Vorbereitung</label><br>
+                            <% if (spell.spe_needs_preparing == 1) { %>
+                                <input class="border mx-1" type="checkbox" id="spe_needs_preparing" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>" checked>
+                            <% } else { %>
+                                <input class="border mx-1" type="checkbox" id="spe_needs_preparing" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>">
+                            <% } %>
+                        </div>
+                        <div class="col-span-1 justify-items-center grid">
+                            <label class="">Zauberkomponenten</label>
+                            <input class="border mx-1" type="text" value="<%= spell.spe_casting_components %>" id="spe_casting_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                        </div>
+                        <div class="col-span-1 justify-items-center grid">
+                            <label class="">Materialkomponenten</label>
+                            <input class="border mx-1" type="text" value="<%= spell.spe_material_components %>" id="spe_material_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+                        </div>
+                    </div>
+                    <label class="">Beschreibung</label>
+                    <textarea class="w-full h-40 resize-none border my-1 p-1" id="spe_description" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><%= spell.spe_description %></textarea>
+                </div>
+            </div>
+        <% }); %>
+<% } %>
+<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_spell()">Zauber hinzufügen</button>

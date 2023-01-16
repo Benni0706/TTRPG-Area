@@ -27,12 +27,12 @@ function show_hide_element(id, display_mode, button, text) {
     if (document.getElementById(id).style.display == display_mode) {
         document.getElementById(id).style.display = "none";
         if (typeof button !== 'undefined') {
-            button.innerHTML = text + ' +';
+            button.innerHTML = text + "&#8897";
         }
     } else {
         document.getElementById(id).style.display = display_mode;
         if (typeof button !== 'undefined') {
-            button.innerHTML = text + ' -';
+            button.innerHTML = text + "&#8896";
         }
     }
 }
@@ -52,14 +52,104 @@ function add_date() {
     xhttp.send(params);
 }
 
-function change_attribute(element) {
-    const xhttp = new XMLHttpRequest();
-    let cha_id = document.getElementById('cha_id').value;
-    const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + element.value;
-    xhttp.onload = function(){
-        
+function change_attribute(element, type) {
+    if (type == 'int' && /[^0-9,.]/.test(element.value)) {
+        element.value = 0;
+    } else {
+        let value = element.value;
+        if (type == 'bool') {
+            if (element.checked == true) {
+                value = 1;
+            } else {
+                value = 0;
+            }
+        } else if (type == 'int') {
+            value = value.replace(',', '.');
+            element.value = value.replace(',', '.');
+            if (value == "") {
+                value = 0;
+                element.value = 0;
+            }
+        }
+        const xhttp = new XMLHttpRequest();
+        let cha_id = document.getElementById('cha_id').value;
+        const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value;
+        xhttp.onload = function(){
+            
+        }
+        xhttp.open("POST", "/change_attribute", true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(params);
     }
-    xhttp.open("POST", "/change_attribute", true);
+}
+
+function show_div(div_id) {
+    let divs = document.getElementsByClassName('tab_main');
+    for (let div of divs) {
+        div.hidden = true;
+    }
+    let buttons = document.getElementsByClassName('tab_buttons');
+    for (let button of buttons) {
+        button.classList.remove("underline");
+    }
+    document.getElementById(div_id).hidden = false;
+    document.getElementById("tab_button_" + div_id).classList.add("underline");
+}
+
+function get_other_tables() {
+    get_spells();
+}
+
+function get_spells() {
+    const xhttp = new XMLHttpRequest();
+
+    const params = "cha_id=" + document.getElementById('cha_id').value;
+    xhttp.onload = function(){
+        document.getElementById('spells').innerHTML = this.responseText;
+    }
+    xhttp.open("POST", "/get_spells", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
+}
+
+function add_spell() {
+    const xhttp = new XMLHttpRequest();
+    const params = "cha_id=" + document.getElementById('cha_id').value;
+    xhttp.onload = function(){
+        get_spells();
+    }
+    xhttp.open("POST", "/add_spell", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
+}
+
+function change_spell_attribute(element, type) {
+    if (type == 'int' && /[^0-9,.]/.test(element.value)) {
+        element.value = 0;
+    } else {
+        let value = element.value;
+        if (type == 'bool') {
+            if (element.checked == true) {
+                value = 1;
+            } else {
+                value = 0;
+            }
+        } else if (type == 'int') {
+            value = value.replace(',', '.');
+            element.value = value.replace(',', '.');
+            if (value == "") {
+                value = 0;
+                element.value = 0;
+            }
+        }
+        const xhttp = new XMLHttpRequest();
+        let cha_id = document.getElementById('cha_id').value;
+        const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value + "&spe_id=" + element.getAttribute("data-spell");
+        xhttp.onload = function(){
+            
+        }
+        xhttp.open("POST", "/change_spell_attribute", true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(params);
+    }
 }
