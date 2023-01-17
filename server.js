@@ -390,5 +390,28 @@ app.post('/change_spell_attribute', function(req, res) {
     }
 });
 
+app.post('/delete_spell', function(req, res) {
+    if (req.session.logged_in && req.session.username && req.session.userid) {
+        if (req.body.cha_id) {
+            connection.query('SELECT cha_acc_id FROM characters WHERE cha_id = ?', [req.body.cha_id], function(error, results, fields) {
+                if (error) throw error;
+                if (results[0].cha_acc_id == req.session.userid) {
+                    connection.query("DELETE FROM spells WHERE spe_id = ?", [req.body.spe_id], function(error, results, fields) {
+                        if (error) throw error;
+                        res.end();
+                    });
+                } else {
+                    res.redirect('/error');
+                }
+            });
+        } else {
+            res.end();
+        }
+    }
+    else {
+        res.send('user not logged in');
+    }
+});
+
 app.listen(8080);
 console.log('server running on port 8080');

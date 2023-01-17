@@ -105,7 +105,7 @@ function get_spells() {
 
     const params = "cha_id=" + document.getElementById('cha_id').value;
     xhttp.onload = function(){
-        document.getElementById('spells').innerHTML = this.responseText;
+        document.getElementById('spells_partial_div').innerHTML = this.responseText;
     }
     xhttp.open("POST", "/get_spells", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -146,10 +146,23 @@ function change_spell_attribute(element, type) {
         let cha_id = document.getElementById('cha_id').value;
         const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value + "&spe_id=" + element.getAttribute("data-spell");
         xhttp.onload = function(){
-            
+            if (type == 'bool') {
+                get_spells();
+            }
         }
         xhttp.open("POST", "/change_spell_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
+}
+
+function delete_spell (spe_id) {
+    const xhttp = new XMLHttpRequest();
+    const params = "cha_id=" + document.getElementById('cha_id').value + "&spe_id=" + spe_id;
+    xhttp.onload = function(){
+        get_spells();
+    }
+    xhttp.open("POST", "/delete_spell", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
 }

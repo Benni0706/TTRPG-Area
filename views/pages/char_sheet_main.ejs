@@ -364,7 +364,53 @@
 
                     </div>
                     <div id="spells" class="tab_main" hidden>
-                        <%- include('../partials/spells') %> 
+                        <div class="p-1 m-1 border rounded-l w-fit">
+                            <div class="grid justify-center">
+                                <span class="text-text text-lg my-1">Zauberplätze</span>
+                            </div>
+                            <span class="text-text">Grad 1: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_1" value="<%= character.cha_spells_used_1 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_1" value="<%= character.cha_spells_1 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 2: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_2" value="<%= character.cha_spells_used_2 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_2" value="<%= character.cha_spells_2 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 3: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_3" value="<%= character.cha_spells_used_3 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mb-1" id="cha_spells_3" value="<%= character.cha_spells_3 %>" onchange="change_attribute(this, 'int')">
+                            <br>
+                            <span class="text-text">Grad 4: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_4" value="<%= character.cha_spells_used_4 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_4" value="<%= character.cha_spells_4 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 5: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_5" value="<%= character.cha_spells_used_5 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_5" value="<%= character.cha_spells_5 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 6: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_6" value="<%= character.cha_spells_used_6 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mb-1" id="cha_spells_6" value="<%= character.cha_spells_6 %>" onchange="change_attribute(this, 'int')">
+                            <br>
+                            <span class="text-text">Grad 7: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_7" value="<%= character.cha_spells_used_7 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_7" value="<%= character.cha_spells_7 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 8: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_8" value="<%= character.cha_spells_used_8 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_8" value="<%= character.cha_spells_8 %>" onchange="change_attribute(this, 'int')">
+                            <span class="text-text">Grad 9: </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_9" value="<%= character.cha_spells_used_9 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
+                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_9" value="<%= character.cha_spells_9 %>" onchange="change_attribute(this, 'int')">
+                            
+                        </div>
+                        <div class="p-1 m-1">
+                            <input class="w-10 text-center text-text bg-gun" type="text" value="Grad" readonly>
+                            <input class="w-40 text-center text-text bg-gun" type="text" value="Zauber" readonly>
+                            <input class="w-24 text-center text-text bg-gun" type="text" value="Zeitaufwand" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="Reichweite" readonly>
+                            <input class="w-24 text-center text-text bg-gun" type="text" value="Dauer" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="Schaden" readonly>
+                            <input class="w-9 text-left text-text bg-gun" type="text" value="Vorb" readonly>
+                        </div>
+                        <div id="spells_partial_div">
+                            <%- include('../partials/spells') %>
+                        </div>
                     </div>
                     <div id="talents" class="tab_main" hidden>
 
