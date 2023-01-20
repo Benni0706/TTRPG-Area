@@ -12,7 +12,7 @@
             margin-right: .5vw;
             padding-top: 1.5em;
             width: 20ch;
-            color: #7D8CA3;
+            color: white;
         }
         .attrlabel * {
             display: inline-block;
@@ -24,312 +24,312 @@
     </style>
 </head>
 
-<body class="bg-dark h-full" onload="get_other_tables()" onchange="get_other_tables()">
-    <header class="bg-red">
+<body class="bg-gray-700 h-full" onload="get_other_tables()" onchange="get_other_tables()">
+    <header class="">
         <%- include('../partials/header'); %>
     </header>
 
-    <main class="bg-dark">
+    <main class="bg-gray-700">
         <input type="hidden" id="cha_id" value="<%= character.cha_id %>">
-        <div id="" class="bg-gun p-2 pb-4 mx-3 rounded-t-lg mt-3 w-min">
+        <div id="" class="bg-zinc-900 p-2 pb-4 mx-3 rounded-t-lg mt-3 w-min">
             <input class="text-2xl w-min rounded-lg px-1" type="text" id="cha_name" value="<%= character.cha_name %>"><br>
         </div>
-        <div class="bg-gun rounded-b-lg rounded-r-lg p-2 pb-4 mx-3 grid grid-cols-4">
+        <div class="bg-zinc-900 rounded-b-lg rounded-r-lg p-2 pb-4 mx-3 grid grid-cols-4">
             <div class="col-span-1 grid justify-items-center">
-                <label class="text-text">Klasse</label>
+                <label class="text-white">Klasse</label>
                 <input type="text" class="rounded-lg px-1 w-40 text-center" id="cha_class" value="<%= character.cha_class %>" onchange="change_attribute(this)">     
             </div>
             <div class="col-span-1 grid justify-items-center">
-                <label class="text-text">Charakterstufe</label>
+                <label class="text-white">Charakterstufe</label>
                 <input type="text" class="rounded-lg px-1 w-16 text-center" id="cha_character_level" value="<%= character.cha_character_level %>" onchange="change_attribute(this, 'int')">     
             </div>
             <div class="col-span-1 grid justify-items-center">
-                <label class="text-text">Erfahrungspunkte</label>
+                <label class="text-white">Erfahrungspunkte</label>
                 <input type="text" class="rounded-lg px-1 w-16 text-center" id="cha_xp" value="<%= character.cha_xp %>" onchange="change_attribute(this, 'int')"> 
             </div>
             <div class="col-span-1 grid justify-items-center">
-                <label class="text-text">Trefferpunkte</label>
+                <label class="text-white">Trefferpunkte</label>
                 <span>
-                    <label class="text-text">Aktuell</label>
+                    <label class="text-white">Aktuell</label>
                     <input type="text" class="rounded-lg px-1 w-10 text-center" id="cha_wounds" value="<%= character.cha_wounds %>" onchange="change_attribute(this, 'int')">
-                    <span class="text-text">/</span>
+                    <span class="text-white">/</span>
                     <input type="text" class="rounded-lg px-1 w-10 text-center" id="cha_max_hp" value="<%= character.cha_max_hp %>" onchange="change_attribute(this,'int')">
-                    <label class="text-text">Maximal</label>
+                    <label class="text-white">Maximal</label>
                 </span>
             </div>
         </div>
         <div class="grid grid-cols-3 lg:grid-cols-7">
-            <div class="col-span-1 bg-gun p-2 m-3 rounded-lg justify-items-center grid min-w-min h-min">
-                <p class="text-center text-text">Stärke</p>
+            <div class="col-span-1 bg-zinc-900 p-2 m-3 rounded-lg justify-items-center grid min-w-min h-min">
+                <p class="text-center text-white">Stärke</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_strength" value="<%= character.cha_strength %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="strength_mod" readonly>
-                <p class="text-center text-text">Geschicklichkeit</p>
+                <p class="text-center text-white">Geschicklichkeit</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_dexterity" value="<%= character.cha_dexterity %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="dexterity_mod" readonly>
-                <p class="text-center text-text">Konstitution</p>
+                <p class="text-center text-white">Konstitution</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_constitution" value="<%= character.cha_constitution %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="constitution_mod" readonly>
-                <p class="text-center text-text">Intelligenz</p>
+                <p class="text-center text-white">Intelligenz</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_intelligence" value="<%= character.cha_intelligence %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="intelligence_mod" readonly>
-                <p class="text-center text-text">Weisheit</p>
+                <p class="text-center text-white">Weisheit</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_wisdom" value="<%= character.cha_wisdom %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="wisdom_mod" readonly>
-                <p class="text-center text-text">Charisma</p>
+                <p class="text-center text-white">Charisma</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_charism" value="<%= character.cha_charism %>" onchange="change_attribute(this, 'int')">
                 <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="charism_mod" readonly>
             </div>
             <div class="col-span-2 min-w-min">
-                <div class="p-2 m-3 bg-gun rounded-lg min-w-min grid justify-center">
-                    <p class="text-xl text-text text-center mb-1">Rettungswürfe</p>
-                    <label class="text-text mb-1 min-w-min">
+                <div class="p-2 m-3 bg-zinc-900 rounded-lg min-w-min grid justify-center">
+                    <p class="text-xl text-white text-center mb-1">Rettungswürfe</p>
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_strength_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_strength_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_strength_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="strength_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="strength_save" readonly>
                         Stärke
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_dexterity_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_dexterity_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_dexterity_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="dexterity_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="dexterity_save" readonly>
                         Geschicklichkeit
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_constitution_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_constitution_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_constitution_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="constitution_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="constitution_save" readonly>
                         Konstitution
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_intelligence_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_intelligence_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_intelligence_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="intelligence_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="intelligence_save" readonly>
                         Intelligenz
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_wisdom_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_wisdom_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_wisdom_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="wisdom_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="wisdom_save" readonly>
                         Weisheit
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_charism_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_charism_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_charism_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="charism_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="charism_save" readonly>
                         Charisma
                     </label>
                 </div>
-                <div class="p-2 m-3 bg-gun rounded-lg min-w-min grid justify-center">
-                    <p class="text-xl text-text text-center mb-1">Fertigkeiten</p>
-                    <label class="text-text mb-1 min-w-min">
+                <div class="p-2 m-3 bg-zinc-900 rounded-lg min-w-min grid justify-center">
+                    <p class="text-xl text-white text-center mb-1">Fertigkeiten</p>
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_acrobatics_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_acrobatics_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_acrobatics_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="acrobatics" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="acrobatics" readonly>
                         Akrobatik (Ges)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_arcane_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_arcane_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_arcane_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="arcane" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="arcane" readonly>
                         Arkane Kunde (Int)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_athletics_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_athletics_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_athletics_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="athletics" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="athletics" readonly>
                         Athletik (Stä)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_performance_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_performance_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_performance_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="performance" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="performance" readonly>
                         Auftreten (Cha)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_intimidation_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_intimidation_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_intimidation_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="intimidation" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="intimidation" readonly>
                         Einschüchtern (Cha)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_sleight_of_hand_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_sleight_of_hand_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_sleight_of_hand_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="sleight_of_hand" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="sleight_of_hand" readonly>
                         Fingerfertigkeit (Ges)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_history_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_history_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_history_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="history" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="history" readonly>
                         Geschichte (Int)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_medicine_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_medicine_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_medicine_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="medicine" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="medicine" readonly>
                         Heilkunde (Wei)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_stealth_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_stealth_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_stealth_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="stealth" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="stealth" readonly>
                         Heimlichkeit (Ges)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_animal_handling_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_animal_handling_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_animal_handling_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="animal_handling" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="animal_handling" readonly>
                         Mit Tieren umgehen (Wei)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_insight_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_insight_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_insight_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="insight" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="insight" readonly>
                         Motiv erkennen (Wei)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_investigation_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_investigation_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_investigation_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="investigation" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="investigation" readonly>
                         Nachforschungen (Int)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_nature_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_nature_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_nature_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="nature" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="nature" readonly>
                         Naturkunde (Int)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_religion_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_religion_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_religion_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="religion" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="religion" readonly>
                         Religion (Int)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_deception_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_deception_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_deception_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="deception" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="deception" readonly>
                         Täuschen (Cha)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_survival_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_survival_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_survival_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="survival" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="survival" readonly>
                         Überlebenskunst (Wei)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_persuasion_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_persuasion_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_persuasion_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="persuasion" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="persuasion" readonly>
                         Überzeugen (Cha)
                     </label>
-                    <label class="text-text mb-1 min-w-min">
+                    <label class="text-white mb-1 min-w-min">
                         <% if (character.cha_perception_prof == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_perception_prof" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
                             <input class="hidden peer" type="checkbox" id="cha_perception_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg" type="text" id="perception" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="perception" readonly>
                         Wahrnehmung (Wei)
                     </label>
                 </div>
             </div>
             <div class="col-span-3 lg:col-span-4">
-                <div class="bg-gun p-2 m-3 rounded-lg min-w-min grid grid-cols-5">
-                    <label class="text-text col-span-1 justify-items-center grid text-center">
+                <div class="bg-zinc-900 p-2 m-3 rounded-lg min-w-min grid grid-cols-5">
+                    <label class="text-white col-span-1 justify-items-center grid text-center">
                         <% if (character.cha_inspiration == 1) { %>
                             <input class="hidden peer" type="checkbox" id="cha_inspiration" onchange="change_attribute(this, 'bool')" checked>
                         <% } else { %>
@@ -340,44 +340,44 @@
                     </label>
                     <div class="justify-items-center grid col-span-1">
                         <input class="rounded-lg w-10 text-center" type="text" id="armor_class" readonly>
-                        <label class="text-text">Rüstungsklasse</label>
+                        <label class="text-white">Rüstungsklasse</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
                         <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_armor_bonus" value="<%= character.cha_armor_bonus %>" onchange="change_attribute(this, 'int')">
-                        <label class="text-text">Rüstungs-Bonus</label>
+                        <label class="text-white">Rüstungs-Bonus</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
                         <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_initiative_bonus" value="<%= character.cha_initiative_bonus %>" onchange="change_attribute(this, 'int')">
-                        <label class="text-text">Initiative-Bonus</label>
+                        <label class="text-white">Initiative-Bonus</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
                         <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_moverate" value="<%= character.cha_moverate %>" onchange="change_attribute(this, 'int')">
-                        <label class="text-text">Bewegungs-Rate</label>
+                        <label class="text-white">Bewegungs-Rate</label>
                     </div>
                     </div>
-                <div class="bg-gun p-2 m-3 rounded-lg min-w-min">
-                    <div class="text-text mb-6 text-lg">
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8 underline" id="tab_button_equipment" onclick="show_div('equipment')">Ausrüstung</button>
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_spells" onclick="show_div('spells')">Zauber</button>
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_talents" onclick="show_div('talents')">Talente/Fähigkeiten</button>
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_inventory" onclick="show_div('inventory')">Inventar</button>
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_character" onclick="show_div('character')">Charakter</button>
-                        <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_notes" onclick="show_div('notes')">Notizen</button>
+                <div class="bg-zinc-900 p-2 m-3 rounded-lg min-w-min">
+                    <div class="text-white mb-6 text-lg">
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8 underline" id="tab_button_equipment" onclick="show_div('equipment')">Ausrüstung</button>
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8" id="tab_button_spells" onclick="show_div('spells')">Zauber</button>
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8" id="tab_button_talents" onclick="show_div('talents')">Talente/Fähigkeiten</button>
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8" id="tab_button_inventory" onclick="show_div('inventory')">Inventar</button>
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8" id="tab_button_character" onclick="show_div('character')">Charakter</button>
+                        <button class="tab_buttons px-1 hover:opacity-80 decoration-red-600 decoration-4 underline-offset-8" id="tab_button_notes" onclick="show_div('notes')">Notizen</button>
                     </div>       
                     <div id="equipment" class="tab_main">
                         <div class="p-1 m-1">
-                            <input class="w-40 text-center text-text bg-gun" type="text" value="Waffe" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="Reichweite" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="AW-Bonus" readonly>
-                            <input class="w-28 text-center text-text bg-gun" type="text" value="Schaden" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="Bonus" readonly>
+                            <input class="w-40 text-center text-white bg-zinc-900" type="text" value="Waffe" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="Reichweite" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="AW-Bonus" readonly>
+                            <input class="w-28 text-center text-white bg-zinc-900" type="text" value="Schaden" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="Bonus" readonly>
                         </div>
                         <div id="weapons">
                         </div>
                         <div class="p-1 m-1">
-                            <input class="w-40 text-center text-text bg-gun" type="text" value="Rüstung" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="RK-Bonus" readonly>
-                            <input class="w-20 text-left text-text bg-gun" type="text" value="Ausg" readonly>
+                            <input class="w-40 text-center text-white bg-zinc-900" type="text" value="Rüstung" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="RK-Bonus" readonly>
+                            <input class="w-20 text-left text-white bg-zinc-900" type="text" value="Ausg" readonly>
                         </div>
                         <div id="armor">
                         </div>
@@ -385,11 +385,11 @@
                     <div id="spells" class="tab_main" hidden>
                         <div class="grid grid-cols-4 mb-2">
                             <div class="col-span-1 grid justify-items-center">
-                                <label class="text-text">Zauberklasse</label>
+                                <label class="text-white">Zauberklasse</label>
                                 <input type="text" class="rounded-lg px-1 w-40 text-center" id="cha_spell_class" value="<%= character.cha_spell_class %>" onchange="change_attribute(this)">
                             </div>
                             <div class="col-span-1 grid justify-items-center">
-                                <label class="text-text">Zauber-Attribut</label>
+                                <label class="text-white">Zauber-Attribut</label>
                                 <select class="rounded-lg px-1 w-40 text-center" id="cha_spell_attribute" value="<%= character.cha_spell_attribute %>" onchange="change_attribute(this)">
                                     <option <% if (character.cha_spell_attribute == 'Intelligenz') { %> selected <% } %>>Intelligenz</option>
                                     <option <% if (character.cha_spell_attribute == 'Weisheit') { %> selected <% } %>>Weisheit</option>
@@ -397,24 +397,24 @@
                                 </select>
                             </div>
                             <div class="col-span-1 grid justify-items-center">
-                                <label class="text-text">Zauber-RW-SG</label>
+                                <label class="text-white">Zauber-RW-SG</label>
                                 <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_rw_sg" readonly>
                             </div>
                             <div class="col-span-1 grid justify-items-center">
-                                <label class="text-text">Zauber-Angriffsbonus</label>                                
+                                <label class="text-white">Zauber-Angriffsbonus</label>                                
                                 <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_attack_bonus" readonly>
                             </div>
                         </div>
                             <div id="spellslots">
                             </div>
                         <div class="p-1 m-1">
-                            <input class="w-10 text-center text-text bg-gun" type="text" value="Grad" readonly>
-                            <input class="w-40 text-center text-text bg-gun" type="text" value="Zauber" readonly>
-                            <input class="w-24 text-center text-text bg-gun" type="text" value="Zeitaufwand" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="Reichweite" readonly>
-                            <input class="w-24 text-center text-text bg-gun" type="text" value="Dauer" readonly>
-                            <input class="w-20 text-center text-text bg-gun" type="text" value="Schaden" readonly>
-                            <input class="w-9 text-left text-text bg-gun" type="text" value="Vorb" readonly>
+                            <input class="w-10 text-center text-white bg-zinc-900" type="text" value="Grad" readonly>
+                            <input class="w-40 text-center text-white bg-zinc-900" type="text" value="Zauber" readonly>
+                            <input class="w-24 text-center text-white bg-zinc-900" type="text" value="Zeitaufwand" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="Reichweite" readonly>
+                            <input class="w-24 text-center text-white bg-zinc-900" type="text" value="Dauer" readonly>
+                            <input class="w-20 text-center text-white bg-zinc-900" type="text" value="Schaden" readonly>
+                            <input class="w-9 text-left text-white bg-zinc-900" type="text" value="Vorb" readonly>
                         </div>
                         <div id="spells_partial_div">
                         </div>
@@ -438,11 +438,11 @@
                     <div id="notes" class="tab_main" hidden>
                         <div class="grid grid-cols-2 gap-2">
                             <div class="col-span-1">
-                                <label class="text-text">Charakterbeschreibung</label>
+                                <label class="text-white">Charakterbeschreibung</label>
                                 <textarea class="w-full h-80 resize-none border my-1 p-1" id="cha_notes_1" onchange="change_attribute(this)"><%= character.cha_notes_1 %></textarea>
                             </div>
                             <div class="col-span-1">
-                                <label class="text-text">Notizen</label>
+                                <label class="text-white">Notizen</label>
                                 <textarea class="w-full h-80 resize-none border my-1 p-1" id="cha_notes_2" onchange="change_attribute(this)"><%= character.cha_notes_2 %></textarea>
                             </div>
                         </div>

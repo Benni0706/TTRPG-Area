@@ -6,9 +6,9 @@
             <div id="talent_edit_<%= talent.tal_id %>" class="hidden my-2">
                 <label>Beschreibung</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="tal_description" onchange="change_talent_attribute(this)" data-talent="<%= talent.tal_id %>"><%= talent.tal_description %></textarea>
-                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_talent(this.value)" value="<%= talent.tal_id %>">Talent/Fähigkeit löschen</button>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_talent(this.value)" value="<%= talent.tal_id %>">Talent/Fähigkeit löschen</button>
             </div>
         </div>
     <% }); %>
 <% } %>
-<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_talent()">Talent/Fähigkeit hinzufügen</button>
+<button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="add_talent()">Talent/Fähigkeit hinzufügen</button>

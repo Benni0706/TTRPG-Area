@@ -6,9 +6,9 @@
             <div id="inventory_edit_<%= inventory.inv_id %>" class="hidden my-2">
                 <label>Beschreibung</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="inv_description" onchange="change_inventory_attribute(this)" data-inventory="<%= inventory.inv_id %>"><%= inventory.inv_description %></textarea>
-                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_inventory(this.value)" value="<%= inventory.inv_id %>">Gegenstand löschen</button>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_inventory(this.value)" value="<%= inventory.inv_id %>">Gegenstand löschen</button>
             </div>
         </div>
     <% }); %>
 <% } %>
-<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_inventory()">Gegenstand hinzufügen</button>
+<button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="add_inventory()">Gegenstand hinzufügen</button>

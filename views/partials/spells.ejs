@@ -3,9 +3,9 @@
         <% if (spell.spe_needs_preparing == 0) { %> 
             <div class="bg-white p-1 m-1 rounded-lg">
         <% } else if (spell.spe_needs_preparing == 1 && spell.spe_prepared == 1) { %> 
-            <div class="bg-green p-1 m-1 rounded-lg">
+            <div class="bg-gray-400 p-1 m-1 rounded-lg">
         <% } else { %>
-            <div class="bg-rosso p-1 m-1 rounded-lg">
+            <div class="bg-gray-600 p-1 m-1 rounded-lg">
         <% } %> 
             <input class="w-10 border text-center" type="text" value="<%= spell.spe_level %>" id="spe_level" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
             <input class="w-40 border text-center" type="text" value="<%= spell.spe_name %>" id="spe_name" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
@@ -43,9 +43,9 @@
                 </div>
                 <label class="">Beschreibung</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="spe_description" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><%= spell.spe_description %></textarea>
-                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_spell(this.value)" value="<%= spell.spe_id %>">Zauber löschen</button>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_spell(this.value)" value="<%= spell.spe_id %>">Zauber löschen</button>
             </div>
         </div>
     <% }); %>
 <% } %>
-<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_spell()">Zauber hinzufügen</button>
+<button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="add_spell()">Zauber hinzufügen</button>

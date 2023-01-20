@@ -1,15 +1,15 @@
-<nav class="bg-rosso text-2xl flex">
-    <a class="hover:bg-bloodred p-4 font-bold" href="/">Startseite</a>
-    <a class="hover:bg-bloodred p-4 font-bold" href="/charsheet_choose">Online Charactersheet</a>
-    <a class="hover:bg-bloodred p-4 font-bold" href="/appointer">Terminplaner</a>
+<nav class="bg-red-600 text-2xl flex">
+    <a class="hover:bg-red-800 p-4 font-bold" href="/">Startseite</a>
+    <a class="hover:bg-red-800 p-4 font-bold" href="/charsheet_choose">Online Charactersheet</a>
+    <a class="hover:bg-red-800 p-4 font-bold" href="/appointer">Terminplaner</a>
     <span class="group p-4 ml-auto">
         <% if (logged_in == 1) { %>
-            <a href="/logout" class="group-hover:inline-block hidden rounded-lg hover:bg-bloodred mr-4">Logout</a>
-            <a href="/account" class="group-hover:inline-block hidden rounded-lg hover:bg-bloodred mr-4">Account</a>
-            <a class="hover:bg-bloodred rounded-lg font-bold"></a>
+            <a href="/logout" class="group-hover:inline-block hidden rounded-lg hover:bg-red-800 mr-4">Logout</a>
+            <a href="/account" class="group-hover:inline-block hidden rounded-lg hover:bg-red-800 mr-4">Account</a>
+            <a class="hover:bg-red-800 rounded-lg font-bold"></a>
             <%= typeof username !='undefined' ? username : 'def' %>
         <% } else {%>
-            <a class="hover:bg-bloodred rounded-lg font-bold" href="/login">Login</a>
+            <a class="hover:bg-red-800 rounded-lg font-bold" href="/login">Login</a>
         <% } %>
     </span>
 </nav>

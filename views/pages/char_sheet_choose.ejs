@@ -8,29 +8,29 @@
     <script src="/script.js"></script>
 </head>
 
-<body class="bg-dark h-full">
-    <header class="bg-red">
+<body class="bg-gray-700 h-full">
+    <header class="">
         <%- include('../partials/header'); %>
     </header>
 
-    <main class="h-full bg-dark grid grid-rows-5 justify-center">
-        <div class="grid justify-center bg-gun p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
-            <span class="text-text text-2xl text-center">Deine Charaktere:</span>
+    <main class="h-full bg-gray-700 grid grid-rows-5 justify-center">
+        <div class="grid justify-center bg-zinc-900 p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
+            <span class="text-white text-2xl text-center">Deine Charaktere:</span>
             <% characters.forEach(function(character) { %>
-                <form action="/charsheet_main" method="post">
+                <form class="grid justify-items-center" action="/charsheet_main" method="post">
                     <input type="hidden" id="cha_id" name="cha_id" value="<%= character.cha_id %>">
-                    <input type="submit" class="text-text hover:text-opacity-50 rounded-lg text-xl m-0.5" value="<%= character.cha_name %>">
+                    <input type="submit" class="text-white hover:text-opacity-50 rounded-lg text-xl m-0.5" value="<%= character.cha_name %> &#10132">
                 </form>
             <% }); %>
             <% if (characters.length == 0) { %> 
                 <span class="mt-6 text-rosso text-xl text-center">Du hast bisher keine Charaktere!</span>
             <% } %>
             <hr class="mt-6">
-            <span class="text-text text-xl mt-6 text-center">Oder erstelle einen neuen Charakter:</span>
+            <span class="text-white text-xl mt-6 text-center">Oder erstelle einen neuen Charakter:</span>
             <form class="mt-2 grid justify-center" action="/create_char" method="post">
-                <label class="text-text text-xl" for="char_name">Name</label>
+                <label class="text-white text-xl" for="char_name">Name</label>
                 <input class="bg-white" type="text" id="char_name" name="char_name" required><br>
-                <input class="bg-rosso rounded-lg text-xl p-1 mt-2 hover:bg-bloodred" type="submit" value="Erstellen">
+                <input class="bg-red-600 rounded-lg text-xl p-1 mt-2 hover:bg-red-800" type="submit" value="Erstellen">
             </form>
         </div>
     </main>

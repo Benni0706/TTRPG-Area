@@ -1,6 +1,6 @@
 <% if (typeof weapons != "undefined") { %>
     <% weapons.forEach( function(weapon) { %>
-        <div class="bg-white p-1 m-1 rounded-lg">
+        <div class="p-1 m-1 rounded-lg bg-gray-400">
             <input class="w-40 border text-center" type="text" value="<%= weapon.wea_name %>" id="wea_name" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
             <input class="w-20 border text-center" type="text" value="<%= weapon.wea_range %>" id="wea_range" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
             <% let attr_mod %> 
@@ -23,19 +23,19 @@
                 <input class="w-20 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
             <% } %> 
             <input class="w-16 border text-center" type="text" value="<%= weapon.wea_damage %>" id="wea_damage" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
-             + 
+            <span class="text-white">+</span> 
             <input class="w-10 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
             <input class="w-20 border text-center" type="text" value="<%= weapon.wea_bonus %>" id="wea_bonus" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
-            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
+            <button class="hover:opacity-80 font-bold text-white" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
             <div id="weapon_edit_<%= weapon.wea_id %>" class="hidden my-2">
                 <div class="grid justify-items-start">
-                    <label>Geübt im Umgang</label>
+                    <label class="text-white">Geübt im Umgang</label>
                     <% if (weapon.wea_proficiency == 1) { %>
                         <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>" checked>
                     <% } else { %>
                         <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>">
                     <% } %><br>
-                    <label>Waffen-Attribut</label>
+                    <label class="text-white">Waffen-Attribut</label>
                     <select class="border mx-1" type="text" value="<%= weapon.wea_attribute %>" id="wea_attribute" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><br>
                         <option <% if (weapon.wea_attribute == 'Stärke') { %> selected <% } %>>Stärke</option>
                         <option <% if (weapon.wea_attribute == 'Geschicklichkeit') { %> selected <% } %>>Geschicklichkeit</option>
@@ -45,11 +45,11 @@
                         <option <% if (weapon.wea_attribute == 'Charisma') { %> selected <% } %>>Charisma</option>
                     </select>
                 </div>
-                <label>Eigenschaften</label>
+                <label class="text-white">Eigenschaften</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="wea_properties" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><%= weapon.wea_properties %></textarea>
-                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_weapon(this.value)" value="<%= weapon.wea_id %>">Waffe löschen</button>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_weapon(this.value)" value="<%= weapon.wea_id %>">Waffe löschen</button>
             </div>
         </div>
     <% }); %>
 <% } %>
-<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_weapon()">Waffe hinzufügen</button>
+<button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="add_weapon()">Waffe hinzufügen</button>
