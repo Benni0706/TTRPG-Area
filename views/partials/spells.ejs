@@ -1,5 +1,5 @@
 <% if (typeof spells != "undefined") { %>
-    <% spells.forEach( function party(spell) { %>
+    <% spells.forEach( function(spell) { %>
         <% if (spell.spe_needs_preparing == 0) { %> 
             <div class="bg-white p-1 m-1 rounded-lg">
         <% } else if (spell.spe_needs_preparing == 1 && spell.spe_prepared == 1) { %> 
@@ -40,10 +40,10 @@
                     <input class="border mx-1" type="text" value="<%= spell.spe_casting_components %>" id="spe_casting_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><br>
                     <label class="">Materialkomponenten</label>
                     <input class="border mx-1" type="text" value="<%= spell.spe_material_components %>" id="spe_material_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><br>
-                    <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_spell(this.value)" value="<%= spell.spe_id %>">Zauber löschen</button>
                 </div>
                 <label class="">Beschreibung</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="spe_description" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><%= spell.spe_description %></textarea>
+                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_spell(this.value)" value="<%= spell.spe_id %>">Zauber löschen</button>
             </div>
         </div>
     <% }); %>

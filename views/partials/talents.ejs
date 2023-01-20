@@ -1,0 +1,14 @@
+<% if (typeof talents != "undefined") { %>
+    <% talents.forEach( function(talent) { %>
+        <div class="bg-white p-1 m-1 rounded-lg">
+            <input class="w-60 border" type="text" value="<%= talent.tal_name %>" id="tal_name" onchange="change_talent_attribute(this)" data-talent="<%= talent.tal_id %>">
+            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('talent_edit_' + this.value, 'block', this, '')" value="<%= talent.tal_id %>">&#8897</button>
+            <div id="talent_edit_<%= talent.tal_id %>" class="hidden my-2">
+                <label>Beschreibung</label>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" id="tal_description" onchange="change_talent_attribute(this)" data-talent="<%= talent.tal_id %>"><%= talent.tal_description %></textarea>
+                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_talent(this.value)" value="<%= talent.tal_id %>">Talent/Fähigkeit löschen</button>
+            </div>
+        </div>
+    <% }); %>
+<% } %>
+<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_talent()">Talent/Fähigkeit hinzufügen</button>

@@ -1,0 +1,55 @@
+<% if (typeof weapons != "undefined") { %>
+    <% weapons.forEach( function(weapon) { %>
+        <div class="bg-white p-1 m-1 rounded-lg">
+            <input class="w-40 border text-center" type="text" value="<%= weapon.wea_name %>" id="wea_name" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
+            <input class="w-20 border text-center" type="text" value="<%= weapon.wea_range %>" id="wea_range" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
+            <% let attr_mod %> 
+            <% if (weapon.wea_attribute == 'Stärke') { %>
+                <% attr_mod = Math.trunc((weapon.cha_strength - 10) / 2) %>
+            <% } else if (weapon.wea_attribute == 'Geschicklichkeit') { %>
+                <% attr_mod = Math.trunc((weapon.cha_dexterity - 10) / 2) %>
+            <% } else if (weapon.wea_attribute == 'Konstitution') { %> 
+                <% attr_mod = Math.trunc((weapon.cha_constitution - 10) / 2) %>
+            <% } else if (weapon.wea_attribute == 'Intelligenz') { %> 
+                <% attr_mod = Math.trunc((weapon.cha_intelligence - 10) / 2) %>
+            <% } else if (weapon.wea_attribute == 'Weisheit') { %> 
+                <% attr_mod = Math.trunc((weapon.cha_wisdom - 10) / 2) %>
+            <% } else if (weapon.wea_attribute == 'Charisma') { %> 
+                <% attr_mod = Math.trunc((weapon.cha_charism - 10) / 2) %>
+            <% } %>
+            <% if (weapon.wea_proficiency == 1) { %> 
+                <input class="w-20 border text-center" type="text" value="<%= weapon.cha_proficiency_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
+            <% } else { %> 
+                <input class="w-20 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+            <% } %> 
+            <input class="w-16 border text-center" type="text" value="<%= weapon.wea_damage %>" id="wea_damage" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
+             + 
+            <input class="w-10 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+            <input class="w-20 border text-center" type="text" value="<%= weapon.wea_bonus %>" id="wea_bonus" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
+            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
+            <div id="weapon_edit_<%= weapon.wea_id %>" class="hidden my-2">
+                <div class="grid justify-items-start">
+                    <label>Geübt im Umgang</label>
+                    <% if (weapon.wea_proficiency == 1) { %>
+                        <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>" checked>
+                    <% } else { %>
+                        <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>">
+                    <% } %><br>
+                    <label>Waffen-Attribut</label>
+                    <select class="border mx-1" type="text" value="<%= weapon.wea_attribute %>" id="wea_attribute" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><br>
+                        <option <% if (weapon.wea_attribute == 'Stärke') { %> selected <% } %>>Stärke</option>
+                        <option <% if (weapon.wea_attribute == 'Geschicklichkeit') { %> selected <% } %>>Geschicklichkeit</option>
+                        <option <% if (weapon.wea_attribute == 'Konstitution') { %> selected <% } %>>Konstitution</option>
+                        <option <% if (weapon.wea_attribute == 'Intelligenz') { %> selected <% } %>>Intelligenz</option>
+                        <option <% if (weapon.wea_attribute == 'Weisheit') { %> selected <% } %>>Weisheit</option>
+                        <option <% if (weapon.wea_attribute == 'Charisma') { %> selected <% } %>>Charisma</option>
+                    </select>
+                </div>
+                <label>Eigenschaften</label>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" id="wea_properties" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><%= weapon.wea_properties %></textarea>
+                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_weapon(this.value)" value="<%= weapon.wea_id %>">Waffe löschen</button>
+            </div>
+        </div>
+    <% }); %>
+<% } %>
+<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_weapon()">Waffe hinzufügen</button>

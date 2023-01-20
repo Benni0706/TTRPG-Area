@@ -24,9 +24,9 @@
     </style>
 </head>
 
-<body class="bg-dark h-full" onload="get_other_tables()">
+<body class="bg-dark h-full" onload="get_other_tables()" onchange="get_other_tables()">
     <header class="bg-red">
-        <%- include('../partials/header'); %>
+        <%- include('../partials/header'); %>**
     </header>
 
     <main class="bg-dark">
@@ -34,10 +34,14 @@
         <div id="" class="bg-gun p-2 pb-4 mx-3 rounded-t-lg mt-3 w-min">
             <input class="text-2xl w-min rounded-lg px-1" type="text" id="cha_name" value="<%= character.cha_name %>"><br>
         </div>
-        <div class="bg-gun rounded-b-lg rounded-r-lg p-2 pb-4 mx-3 grid grid-cols-3">
+        <div class="bg-gun rounded-b-lg rounded-r-lg p-2 pb-4 mx-3 grid grid-cols-4">
             <div class="col-span-1 grid justify-items-center">
-                <label class="text-text">Klasse(n) & Stufe(n)</label>
-                <input type="text" class="rounded-lg px-1" id="cha_class" value="<%= character.cha_class %>" onchange="change_attribute(this)">     
+                <label class="text-text">Klasse</label>
+                <input type="text" class="rounded-lg px-1 w-40 text-center" id="cha_class" value="<%= character.cha_class %>" onchange="change_attribute(this)">     
+            </div>
+            <div class="col-span-1 grid justify-items-center">
+                <label class="text-text">Charakterstufe</label>
+                <input type="text" class="rounded-lg px-1 w-16 text-center" id="cha_character_level" value="<%= character.cha_character_level %>" onchange="change_attribute(this, 'int')">     
             </div>
             <div class="col-span-1 grid justify-items-center">
                 <label class="text-text">Erfahrungspunkte</label>
@@ -339,11 +343,11 @@
                         <label class="text-text">Rüstungsklasse</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
-                        <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_initiative_bonus" value="<%= character.cha_initiative_bonus %>" onchange="change_attribute(this, 'int')">
+                        <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_armor_bonus" value="<%= character.cha_armor_bonus %>" onchange="change_attribute(this, 'int')">
                         <label class="text-text">Rüstungs-Bonus</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
-                        <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_armor_bonus" value="<%= character.cha_armor_bonus %>" onchange="change_attribute(this, 'int')">
+                        <input class="rounded-lg w-10 text-center" type="text" class="rounded-lg px-1" id="cha_initiative_bonus" value="<%= character.cha_initiative_bonus %>" onchange="change_attribute(this, 'int')">
                         <label class="text-text">Initiative-Bonus</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
@@ -360,45 +364,49 @@
                         <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_character" onclick="show_div('character')">Charakter</button>
                         <button class="tab_buttons px-1 hover:opacity-80 decoration-rosso decoration-4 underline-offset-8" id="tab_button_notes" onclick="show_div('notes')">Notizen</button>
                     </div>       
-                    <div id="equipment" class="tab_main" hidden>
-
+                    <div id="equipment" class="tab_main">
+                        <div class="p-1 m-1">
+                            <input class="w-40 text-center text-text bg-gun" type="text" value="Waffe" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="Reichweite" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="AW-Bonus" readonly>
+                            <input class="w-28 text-center text-text bg-gun" type="text" value="Schaden" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="Bonus" readonly>
+                        </div>
+                        <div id="weapons">
+                        </div>
+                        <div class="p-1 m-1">
+                            <input class="w-40 text-center text-text bg-gun" type="text" value="Rüstung" readonly>
+                            <input class="w-20 text-center text-text bg-gun" type="text" value="RK-Bonus" readonly>
+                            <input class="w-20 text-left text-text bg-gun" type="text" value="Ausg" readonly>
+                        </div>
+                        <div id="armor">
+                        </div>
                     </div>
                     <div id="spells" class="tab_main" hidden>
-                        <div class="p-1 m-1 border rounded-l w-fit">
-                            <div class="grid justify-center">
-                                <span class="text-text text-lg my-1">Zauberplätze</span>
+                        <div class="grid grid-cols-4 mb-2">
+                            <div class="col-span-1 grid justify-items-center">
+                                <label class="text-text">Zauberklasse</label>
+                                <input type="text" class="rounded-lg px-1 w-40 text-center" id="cha_spell_class" value="<%= character.cha_spell_class %>" onchange="change_attribute(this)">
                             </div>
-                            <span class="text-text">Grad 1: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_1" value="<%= character.cha_spells_used_1 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_1" value="<%= character.cha_spells_1 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 2: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_2" value="<%= character.cha_spells_used_2 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_2" value="<%= character.cha_spells_2 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 3: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_3" value="<%= character.cha_spells_used_3 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mb-1" id="cha_spells_3" value="<%= character.cha_spells_3 %>" onchange="change_attribute(this, 'int')">
-                            <br>
-                            <span class="text-text">Grad 4: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_4" value="<%= character.cha_spells_used_4 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_4" value="<%= character.cha_spells_4 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 5: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_5" value="<%= character.cha_spells_used_5 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_5" value="<%= character.cha_spells_5 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 6: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_6" value="<%= character.cha_spells_used_6 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mb-1" id="cha_spells_6" value="<%= character.cha_spells_6 %>" onchange="change_attribute(this, 'int')">
-                            <br>
-                            <span class="text-text">Grad 7: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_7" value="<%= character.cha_spells_used_7 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_7" value="<%= character.cha_spells_7 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 8: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_8" value="<%= character.cha_spells_used_8 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center mr-2" id="cha_spells_8" value="<%= character.cha_spells_8 %>" onchange="change_attribute(this, 'int')">
-                            <span class="text-text">Grad 9: </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_used_9" value="<%= character.cha_spells_used_9 %>" onchange="change_attribute(this, 'int')"><span class="text-text"> / </span>
-                            <input type="text" class="rounded-lg px-1 w-8 text-center" id="cha_spells_9" value="<%= character.cha_spells_9 %>" onchange="change_attribute(this, 'int')">
-                            
+                            <div class="col-span-1 grid justify-items-center">
+                                <label class="text-text">Zauber-Attribut</label>
+                                <select class="rounded-lg px-1 w-40 text-center" id="cha_spell_attribute" value="<%= character.cha_spell_attribute %>" onchange="change_attribute(this)">
+                                    <option <% if (character.cha_spell_attribute == 'Intelligenz') { %> selected <% } %>>Intelligenz</option>
+                                    <option <% if (character.cha_spell_attribute == 'Weisheit') { %> selected <% } %>>Weisheit</option>
+                                    <option <% if (character.cha_spell_attribute == 'Charisma') { %> selected <% } %>>Charisma</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 grid justify-items-center">
+                                <label class="text-text">Zauber-RW-SG</label>
+                                <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_rw_sg" readonly>
+                            </div>
+                            <div class="col-span-1 grid justify-items-center">
+                                <label class="text-text">Zauber-Angriffsbonus</label>                                
+                                <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_attack_bonus" readonly>
+                            </div>
                         </div>
+                            <div id="spellslots">
+                            </div>
                         <div class="p-1 m-1">
                             <input class="w-10 text-center text-text bg-gun" type="text" value="Grad" readonly>
                             <input class="w-40 text-center text-text bg-gun" type="text" value="Zauber" readonly>
@@ -409,14 +417,11 @@
                             <input class="w-9 text-left text-text bg-gun" type="text" value="Vorb" readonly>
                         </div>
                         <div id="spells_partial_div">
-                            <%- include('../partials/spells') %>
                         </div>
                     </div>
                     <div id="talents" class="tab_main" hidden>
-
                     </div>
                     <div id="inventory" class="tab_main" hidden>
-
                     </div>
                     <div id="character" class="tab_main" hidden>
                         <label class="attrlabel">Hintergrund<input type="text" class="rounded-lg px-1" id="cha_background" value="<%= character.cha_background %>" onchange="change_attribute(this)"></label>
@@ -431,7 +436,16 @@
                         <label class="attrlabel">Gottheit<input type="text" class="rounded-lg px-1" id="cha_god" value="<%= character.cha_god %>" onchange="change_attribute(this)"></label>
                     </div>
                     <div id="notes" class="tab_main" hidden>
-
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="col-span-1">
+                                <label class="text-text">Charakterbeschreibung</label>
+                                <textarea class="w-full h-80 resize-none border my-1 p-1" id="cha_notes_1" onchange="change_attribute(this)"><%= character.cha_notes_1 %></textarea>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="text-text">Notizen</label>
+                                <textarea class="w-full h-80 resize-none border my-1 p-1" id="cha_notes_2" onchange="change_attribute(this)"><%= character.cha_notes_2 %></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

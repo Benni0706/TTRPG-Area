@@ -1,0 +1,14 @@
+<% if (typeof inventory != "undefined") { %>
+    <% inventory.forEach( function(inventory) { %>
+        <div class="bg-white p-1 m-1 rounded-lg">
+            <input class="w-60 border" type="text" value="<%= inventory.inv_name %>" id="inv_name" onchange="change_inventory_attribute(this)" data-inventory="<%= inventory.inv_id %>">
+            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('inventory_edit_' + this.value, 'block', this, '')" value="<%= inventory.inv_id %>">&#8897</button>
+            <div id="inventory_edit_<%= inventory.inv_id %>" class="hidden my-2">
+                <label>Beschreibung</label>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" id="inv_description" onchange="change_inventory_attribute(this)" data-inventory="<%= inventory.inv_id %>"><%= inventory.inv_description %></textarea>
+                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_inventory(this.value)" value="<%= inventory.inv_id %>">Gegenstand löschen</button>
+            </div>
+        </div>
+    <% }); %>
+<% } %>
+<button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="add_inventory()">Gegenstand hinzufügen</button>
