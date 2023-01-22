@@ -43,5 +43,5 @@ app.get('/error', function (req, res) {
     res.send('Es ist ein Fehler aufgetreten');
 });
 
-app.listen(8080);
+app.listen(3000);
 console.log('server running on port 8080');
