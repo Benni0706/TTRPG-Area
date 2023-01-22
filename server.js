@@ -29,6 +29,10 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.configure(function() {
+    app.set('views', path.join(__dirname + '/views'));
+});
+
 glob.sync('./routes/*.js').forEach( function(file) {
     require(path.resolve(file))(app, connection);
 });
