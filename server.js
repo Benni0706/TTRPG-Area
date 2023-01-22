@@ -7,6 +7,8 @@ const favicon = require('serve-favicon');
 const { request } = require('http');
 const { render } = require('ejs');
 const glob = require('glob');
+const hostname = 'localhost';
+const port = 3000;
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'benni',
@@ -43,5 +45,6 @@ app.get('/error', function (req, res) {
     res.send('Es ist ein Fehler aufgetreten');
 });
 
-app.listen(3000);
-console.log('server running on port 8080');
+app.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
