@@ -34,7 +34,7 @@ glob.sync('./routes/*.js').forEach( function(file) {
 });
 
 app.get('/', function (req, res) {
-    res.render('pages/home', {
+    res.render('./pages/home', {
         logged_in: req.session.logged_in,
         username: req.session.username,
     });
