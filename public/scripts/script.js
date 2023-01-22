@@ -514,6 +514,47 @@ function delete_spellslot (sps_level) {
 }
 
 function calculate_attributes () {
+    if (document.getElementById('cha_xp').value < 300) {
+        document.getElementById('character_level').value = 1;
+    } else if (document.getElementById('cha_xp').value < 900) {
+        document.getElementById('character_level').value = 2;
+    } else if (document.getElementById('cha_xp').value < 2700) {
+        document.getElementById('character_level').value = 3;
+    } else if (document.getElementById('cha_xp').value < 6500) {
+        document.getElementById('character_level').value = 4;
+    } else if (document.getElementById('cha_xp').value < 14000) {
+        document.getElementById('character_level').value = 5;
+    } else if (document.getElementById('cha_xp').value < 23000) {
+        document.getElementById('character_level').value = 6;
+    } else if (document.getElementById('cha_xp').value < 34000) {
+        document.getElementById('character_level').value = 7;
+    } else if (document.getElementById('cha_xp').value < 48000) {
+        document.getElementById('character_level').value = 8;
+    } else if (document.getElementById('cha_xp').value < 64000) {
+        document.getElementById('character_level').value = 9;
+    } else if (document.getElementById('cha_xp').value < 85000) {
+        document.getElementById('character_level').value = 10;
+    } else if (document.getElementById('cha_xp').value < 10000) {
+        document.getElementById('character_level').value = 11;
+    } else if (document.getElementById('cha_xp').value < 120000) {
+        document.getElementById('character_level').value = 12;
+    } else if (document.getElementById('cha_xp').value < 140000) {
+        document.getElementById('character_level').value = 13;
+    } else if (document.getElementById('cha_xp').value < 165000) {
+        document.getElementById('character_level').value = 14;
+    } else if (document.getElementById('cha_xp').value < 195000) {
+        document.getElementById('character_level').value = 15;
+    } else if (document.getElementById('cha_xp').value < 225000) {
+        document.getElementById('character_level').value = 16;
+    } else if (document.getElementById('cha_xp').value < 265000) {
+        document.getElementById('character_level').value = 17;
+    } else if (document.getElementById('cha_xp').value < 305000) {
+        document.getElementById('character_level').value = 18;
+    } else if (document.getElementById('cha_xp').value < 355000) {
+        document.getElementById('character_level').value = 19;
+    } else if (document.getElementById('cha_xp').value >= 355000) {
+        document.getElementById('character_level').value = 20;
+    }
     document.getElementById('strength_mod').value = Math.trunc((document.getElementById('cha_strength').value - 10) / 2);
     document.getElementById('dexterity_mod').value = Math.trunc((document.getElementById('cha_dexterity').value - 10) / 2);
     document.getElementById('constitution_mod').value = Math.trunc((document.getElementById('cha_constitution').value - 10) / 2);
@@ -521,16 +562,16 @@ function calculate_attributes () {
     document.getElementById('wisdom_mod').value = Math.trunc((document.getElementById('cha_wisdom').value - 10) / 2);
     document.getElementById('charism_mod').value = Math.trunc((document.getElementById('cha_charism').value - 10) / 2);
     let prof_bonus = 2;
-    if (document.getElementById('cha_character_level').value > 4) {
+    if (document.getElementById('character_level').value > 4) {
         prof_bonus = 3;
     }
-    if (document.getElementById('cha_character_level').value > 8) {
+    if (document.getElementById('character_level').value > 8) {
         prof_bonus = 4;
     }
-    if (document.getElementById('cha_character_level').value > 12) {
+    if (document.getElementById('character_level').value > 12) {
         prof_bonus = 5;
     }
-    if (document.getElementById('cha_character_level').value > 16) {
+    if (document.getElementById('character_level').value > 16) {
         prof_bonus = 6;
     }
     calculate_saving_throw('strength', prof_bonus);

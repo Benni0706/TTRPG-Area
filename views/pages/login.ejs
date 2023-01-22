@@ -7,17 +7,17 @@
     <link href="/output.css" rel="stylesheet">
 </head>
 
-<body class="h-full bg-dark grid grid-rows-5 justify-center">
-    <main class="grid justify-center bg-gun p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
-        <p class="text-text text-xl">Bitte melde dich an, um fortzufahren:</p>
+<body class="h-full bg-gray-700 grid grid-rows-5 justify-center">
+    <main class="grid justify-center bg-zinc-900 p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
+        <p class="text-white text-xl">Bitte melde dich an, um fortzufahren:</p>
         <form class="justify-center grid" action="/login" method="post">
-            <label class="text-text text-xl" for="login_name">Benutzername</label>
+            <label class="text-white text-xl" for="login_name">Benutzername</label>
             <input class="bg-white" type="text" id="login_name" name="login_name" value="<%= username %>" required><br>
-            <label class="text-text text-xl" for="login_password">Passwort</label>
+            <label class="text-white text-xl" for="login_password">Passwort</label>
             <input class="" type="password" id="login_password" name="login_password" required><br>
-            <input class="bg-rosso m-2 rounded-lg text-xl" type="submit" value="Login">
+            <input class="bg-red-600 hover:bg-red-800 m-2 rounded-lg text-xl" type="submit" value="Login">
         </form>
-        <br><p class="text-text text-xl">Du hast noch keinen Account? Dann erstelle <a href="/create_acc" class="text-blue hover:underline">hier</a> einen Neuen.</p>
+        <br><p class="text-white text-xl">Du hast noch keinen Account? Dann erstelle <a href="/create_acc" class="text-blue-500 hover:underline">hier</a> einen Neuen.</p>
     </main>
 
     <footer>

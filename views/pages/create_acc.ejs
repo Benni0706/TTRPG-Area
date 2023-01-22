@@ -7,21 +7,21 @@
     <link href="/output.css" rel="stylesheet">
 </head>
 
-<body class="h-full bg-dark grid grid-rows-5 justify-center">
-    <main class="grid justify-center bg-gun p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
-        <p class="text-text text-xl">Bitte gib deine Daten an, um einen Account zu erstellen:</p>
+<body class="h-full bg-gray-700 grid grid-rows-5 justify-center">
+    <main class="grid justify-center bg-zinc-900 p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
+        <p class="text-white text-xl">Bitte gib deine Daten an, um einen Account zu erstellen:</p>
         <form class="justify-center grid" action="/create_acc" method="post">
-            <label  class="text-text text-xl"for="create_acc_name">Benutzername</label>
+            <label  class="text-white text-xl"for="create_acc_name">Benutzername</label>
             <input type="text" id="create_acc_name" name="create_acc_name" required><br>
-            <label  class="text-text text-xl"for="create_acc_mail">E-Mail</label>
+            <label  class="text-white text-xl"for="create_acc_mail">E-Mail</label>
             <input type="text" id="create_acc_mail" name="create_acc_mail" required><br>
-            <label  class="text-text text-xl"for="create_acc_password">Passwort</label>
+            <label  class="text-white text-xl"for="create_acc_password">Passwort</label>
             <input type="password" id="create_acc_password" name="create_acc_password" required ><br>
-            <label  class="text-text text-xl"for="create_acc_password_2">Passwort wiederholen</label>
+            <label  class="text-white text-xl"for="create_acc_password_2">Passwort wiederholen</label>
             <input type="password" id="create_acc_password_2" name="create_acc_password_2" required><br>
-            <input class="bg-rosso m-2 rounded-lg text-xl" type="submit" value="Account erstellen">
+            <input class="bg-red-600 hover:bg-red-800 m-2 rounded-lg text-xl" type="submit" value="Account erstellen">
         </form>
-        <p class="text-text text-xl">Du hast bereits einen Account? Dann melde dich <a href="/login" class="text-blue hover:underline">hier</a> an.</p>
+        <p class="text-white text-xl">Du hast bereits einen Account? Dann melde dich <a href="/login" class="text-blue-500 hover:underline">hier</a> an.</p>
     </main>
 
     <footer>
