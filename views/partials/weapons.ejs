@@ -17,8 +17,21 @@
             <% } else if (weapon.wea_attribute == 'Charisma') { %> 
                 <% attr_mod = Math.trunc((weapon.cha_charism - 10) / 2) %>
             <% } %>
-            <% if (weapon.wea_proficiency == 1) { %> 
-                <input class="w-20 border text-center" type="text" value="<%= weapon.cha_proficiency_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
+            <% if (weapon.wea_proficiency == 1) { %>
+                <% let prof_bonus = 2;
+                if (weapon.cha_xp > 2700) {
+                    prof_bonus = 3;
+                }
+                if (weapon.cha_xp > 48000) {
+                    prof_bonus = 4;
+                }
+                if (weapon.cha_xp > 100000) {
+                    prof_bonus = 5;
+                }
+                if (weapon.cha_xp > 195000) {
+                    prof_bonus = 6;
+                } %> 
+                <input class="w-20 border text-center" type="text" value="<%= prof_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
             <% } else { %> 
                 <input class="w-20 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
             <% } %> 
