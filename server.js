@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname + '/views'));
 
-glob.sync('./routes/*.js').forEach( function(file) {
+glob.sync('./WebsiteMain/routes/*.js').forEach( function(file) {
     console.log(path.join(__dirname));
     require(path.resolve(file))(app, connection);
 });
