@@ -7,13 +7,24 @@ const favicon = require('serve-favicon');
 const { request } = require('http');
 const { render } = require('ejs');
 const glob = require('glob');
-const hostname = 'localhost';
-const port = 3000;
+const fs = require('fs');
+
+let config;
+try {
+    config = fs.readFileSync('./config.txt', 'utf8').split(',');
+    console.log('daten:' + config);
+} catch (err) {
+    console.error(err);
+}
+
+const path_routes = config[0];
+const hostname = config[1];
+const port = config[2];
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'benni',
-    password: 'MCBsql2003+',
-    database: 'website'
+    host: config[3],
+    user: config[4],
+    password: config[5],
+    database: config[6]
 });
 
 app.set('view engine', 'ejs');
@@ -31,8 +42,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname + '/views'));
 
-glob.sync('./WebsiteMain/routes/*.js').forEach( function(file) {
-    console.log(path.join(__dirname));
+console.log(path.join(__dirname, 'routes/*.js'));
+glob.sync(path_routes).forEach( function(file) {
     require(path.resolve(file))(app, connection);
 });
 
