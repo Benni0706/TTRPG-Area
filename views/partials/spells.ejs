@@ -58,7 +58,12 @@
                     <label class="col-span-1">Schaden</label>
                     <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_damage %>" name="spe_damage" id="spe_damage<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
                     <label class="col-span-1">Zauberkomponenten</label>
-                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_casting_components %>" name="spe_casting_components" id="spe_casting_components<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <select class="w-40 border col-span-1" name="spe_casting_components" id="spe_casting_components<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                        <option>--</option>
+                        <option <% if (spell.casting_components == 'V') { %> selected <% } %>>V</option>
+                        <option <% if (spell.casting_components == 'G') { %> selected <% } %>>G</option>
+                        <option <% if (spell.casting_components == 'V,G') { %> selected <% } %>>V,G</option>
+                    </select>
                     <label class="col-span-1">Materialkomponenten</label>
                     <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_material_components %>" name="spe_material_components" id="spe_material_components<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
                 </div>
