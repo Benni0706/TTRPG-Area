@@ -44,7 +44,7 @@
                 </div>
                 <label class="text-white">Eigenschaften</label>
                 <textarea class="w-full h-40 resize-none border my-1 p-1" id="arm_properties" onchange="change_armor_attribute(this)" data-armor="<%= armor.arm_id %>"><%= armor.arm_properties %></textarea>
-                <button class="bg-rosso hover:bg-bloodred rounded-lg p-1 m-2" onclick="delete_armor(this.value)" value="<%= armor.arm_id %>">Rüstung löschen</button>
+                <button class="bg-res-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_armor(this.value)" value="<%= armor.arm_id %>">Rüstung löschen</button>
             </div>
         </div>
     <% }); %>

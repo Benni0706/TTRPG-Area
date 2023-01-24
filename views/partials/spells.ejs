@@ -7,18 +7,18 @@
         <% } else { %>
             <div class="bg-gray-600 p-1 m-1 rounded-lg">
         <% } %> 
-            <input class="w-10 border text-center" type="text" value="<%= spell.spe_level %>" id="spe_level" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
-            <input class="w-40 border text-center" type="text" value="<%= spell.spe_name %>" id="spe_name" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
-            <input class="w-24 border text-center" type="text" value="<%= spell.spe_casting_time %>" id="spe_casting_time" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
-            <input class="w-20 border text-center" type="text" value="<%= spell.spe_range %>" id="spe_range" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
-            <input class="w-24 border text-center" type="text" value="<%= spell.spe_duration %>" id="spe_duration" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
-            <input class="w-20 border text-center" type="text" value="<%= spell.spe_damage %>" id="spe_damage" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>">
+            <input class="w-10 bg-inherit text-center" type="text" value="<%= spell.spe_level %>" readonly>
+            <input class="w-40 bg-inherit text-center" type="text" value="<%= spell.spe_name %>" readonly>
+            <input class="w-24 bg-inherit text-center" type="text" value="<%= spell.spe_casting_time %>" readonly>
+            <input class="w-20 bg-inherit text-center" type="text" value="<%= spell.spe_range %>" readonly>
+            <input class="w-24 bg-inherit text-center" type="text" value="<%= spell.spe_duration %>" readonly>
+            <input class="w-20 bg-inherit text-center" type="text" value="<%= spell.spe_damage %>" readonly>
             <% if (spell.spe_needs_preparing == 1 && spell.spe_level != 0) { %>
                 <label class="mr-3 ml-2">
                     <% if (spell.spe_prepared == 1) { %>
-                        <input class="border mx-1 hidden peer" type="checkbox" id="spe_prepared" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>" checked>
+                        <input class="border mx-1 hidden peer" type="checkbox" name="spe_prepared" id="spe_prepared<%= spell.spe_id %>" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>" checked>
                     <% } else { %>
-                        <input class="border mx-1 hidden peer" type="checkbox" id="spe_prepared" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>">
+                        <input class="border mx-1 hidden peer" type="checkbox" name="spe_prepared" id="spe_prepared<%= spell.spe_id %>" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>">
                     <% } %>
                     <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
                 </label>
@@ -29,22 +29,42 @@
             <% } %>
             <button class="hover:opacity-80 font-bold" onclick="show_hide_element('spell_edit_' + this.value, 'block', this, '')" value="<%= spell.spe_id %>">&#8897</button>
             <div id="spell_edit_<%= spell.spe_id %>" class="hidden my-2">
-                <div class="grid justify-items-start">
+                <h1 class="font-bold text-xl">Zauber bearbeiten:</h1>
+                <div class="grid grid-cols-2 w-fit gap-1 justify-items-start">
+                    <label class="col-span-1">Grad</label>
+                    <input class="w-10 border" type="text" value="<%= spell.spe_level %>" name="spe_level" id="spe_level<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
                     <% if (spell.spe_level != 0) { %> 
-                        <label>Benötigt Vorbereitung</label>
+                        <label class="col-span-1">Benötigt Vorbereitung</label>
                         <% if (spell.spe_needs_preparing == 1) { %>
-                            <input class="border mx-1" type="checkbox" id="spe_needs_preparing" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>" checked>
+                            <input class="border col-span-1" type="checkbox" name="spe_needs_preparing" id="spe_needs_preparing<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>" checked>
                         <% } else { %>
-                            <input class="border mx-1" type="checkbox" id="spe_needs_preparing" onchange="change_spell_attribute(this, 'bool')" data-spell="<%= spell.spe_id %>">
-                        <% } %><br>
+                            <input class="border col-span-1" type="checkbox" name="spe_needs_preparing" id="spe_needs_preparing<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                        <% } %>
+                    <% } else { %>
+                        <% if (spell.spe_needs_preparing == 1) { %>
+                            <input class="border hidden col-span-1" type="checkbox" name="spe_needs_preparing" id="spe_needs_preparing<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>" checked>
+                        <% } else { %>
+                            <input class="border hidden col-span-1" type="checkbox" name="spe_needs_preparing" id="spe_needs_preparing<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                        <% } %>
                     <% } %> 
-                    <label class="">Zauberkomponenten</label>
-                    <input class="border mx-1" type="text" value="<%= spell.spe_casting_components %>" id="spe_casting_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><br>
-                    <label class="">Materialkomponenten</label>
-                    <input class="border mx-1" type="text" value="<%= spell.spe_material_components %>" id="spe_material_components" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><br>
+                    <label class="col-span-1">Zauber</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_name %>" name="spe_name" id="spe_name<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Zeitaufwand</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_casting_time %>" name="spe_casting_time" id="spe_casting_time<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Reichweite</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_range %>" name="spe_range" id="spe_range<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Dauer</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_duration %>" name="spe_duration" id="spe_duration<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Schaden</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_damage %>" name="spe_damage" id="spe_damage<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Zauberkomponenten</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_casting_components %>" name="spe_casting_components" id="spe_casting_components<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
+                    <label class="col-span-1">Materialkomponenten</label>
+                    <input class="w-40 border col-span-1" type="text" value="<%= spell.spe_material_components %>" name="spe_material_components" id="spe_material_components<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>">
                 </div>
-                <label class="">Beschreibung</label>
-                <textarea class="w-full h-40 resize-none border my-1 p-1" id="spe_description" onchange="change_spell_attribute(this)" data-spell="<%= spell.spe_id %>"><%= spell.spe_description %></textarea>
+                <label>Beschreibung</label>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" name="spe_description" id="spe_description<%= spell.spe_id %>" data-spell="<%= spell.spe_id %>"><%= spell.spe_description %></textarea>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="save_spell(this.value)" value="<%= spell.spe_id %>">Zauber speichern</button>
                 <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_spell(this.value)" value="<%= spell.spe_id %>">Zauber löschen</button>
             </div>
         </div>

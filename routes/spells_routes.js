@@ -6,7 +6,7 @@ module.exports = function(app, connection) {
                 connection.query('SELECT cha_acc_id FROM characters WHERE cha_id = ?', [req.body.cha_id], function(error, results, fields) {
                     if (error) throw error;
                     if (results[0].cha_acc_id == req.session.userid) {
-                        connection.query('SELECT * FROM spells WHERE spe_cha_id = ? ORDER BY spe_prepared DESC, spe_level, spe_name', [req.body.cha_id], function(error, results, fields) {
+                        connection.query('SELECT * FROM spells WHERE spe_cha_id = ? ORDER BY spe_needs_preparing, spe_prepared DESC, spe_level, spe_name', [req.body.cha_id], function(error, results, fields) {
                             if (error) throw error;
                             res.render('partials/spells', {
                                 spells: results,
