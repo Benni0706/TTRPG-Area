@@ -3,7 +3,7 @@
         <span class="text-white text-lg my-1">Zauberplätze</span>
     </div>
     <% for (let i = 1; i < 10; i++) { %>
-        <div class="col-span-1">
+        <div class="col-span-1 group">
             <label class="text-white">Grad <%= i %> :</label>
             <% spellslots.forEach( function(spellslot) { %>
                 <% if (spellslot.sps_level == i) { %>
@@ -17,8 +17,8 @@
                     </label>
                 <% } %>
             <% }); %>
-            <button class="text-white rounded-lg px-0.5 ml-1 hover:opacity-70" onclick="add_spellslot(this.value)" value="<%= i %> ">+</button>
-            <button class="text-white rounded-lg px-0.5 hover:opacity-70 mr-4" onclick="delete_spellslot(this.value)" value="<%= i %> ">-</button>
+            <button class="text-white rounded-lg px-0.5 ml-1 hover:opacity-70 hidden group-hover:inline-block" onclick="add_spellslot(this.value)" value="<%= i %> ">+</button>
+            <button class="text-white rounded-lg px-0.5 hover:opacity-70 hidden group-hover:inline-block" onclick="delete_spellslot(this.value)" value="<%= i %> ">-</button>
         </div>
     <% } %>
 </div>

@@ -150,11 +150,9 @@ function change_spell_attribute(element, type) {
         }
         const xhttp = new XMLHttpRequest();
         let cha_id = document.getElementById('cha_id').value;
-        const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value + "&spe_id=" + element.getAttribute("data-spell");
+        const params = "cha_id=" + cha_id + "&attribute=" + element.name + "&value=" + value + "&spe_id=" + element.getAttribute("data-spell");
         xhttp.onload = function(){
-            if (type == 'bool') {
-                get_spells();
-            }
+            get_spells();
         }
         xhttp.open("POST", "/change_spell_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -171,6 +169,22 @@ function delete_spell (spe_id) {
     xhttp.open("POST", "/delete_spell", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
+}
+
+function save_spell (spe_id) {
+    if (document.getElementById('spe_level' + spe_id).value == 0) {
+        document.getElementById('spe_needs_preparing' + spe_id).checked = false;
+    }
+    change_spell_attribute(document.getElementById('spe_level' + spe_id), 'int');
+    change_spell_attribute(document.getElementById('spe_name' + spe_id));
+    change_spell_attribute(document.getElementById('spe_casting_time' + spe_id));
+    change_spell_attribute(document.getElementById('spe_range' + spe_id));
+    change_spell_attribute(document.getElementById('spe_duration' + spe_id));
+    change_spell_attribute(document.getElementById('spe_damage' + spe_id));
+    change_spell_attribute(document.getElementById('spe_needs_preparing' + spe_id), 'bool');
+    change_spell_attribute(document.getElementById('spe_casting_components' + spe_id));
+    change_spell_attribute(document.getElementById('spe_material_components' + spe_id));
+    change_spell_attribute(document.getElementById('spe_description' + spe_id));
 }
 
 function get_armor() {
