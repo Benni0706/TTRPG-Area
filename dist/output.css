@@ -686,6 +686,10 @@ video {
   margin-right: 0.5rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1098,6 +1102,10 @@ video {
 }
 
 .hover\:opacity-70:hover {
+  opacity: 0.7;
+}
+
+.first-letter\:hover\:opacity-70:hover::first-letter {
   opacity: 0.7;
 }
 

@@ -1,23 +1,23 @@
 <div class="p-1 m-1 border rounded-l w-full grid grid-cols-3">
-    <div class="grid justify-center col-span-3">
+    <div class="grid col-span-3 justify-center">
         <span class="text-white text-lg my-1">Zauberplätze</span>
     </div>
     <% for (let i = 1; i < 10; i++) { %>
         <div class="col-span-1 group">
-            <label class="text-white">Grad <%= i %> :</label>
+            <label class="text-white mr-1">Grad <%= i %> :</label>
             <% spellslots.forEach( function(spellslot) { %>
                 <% if (spellslot.sps_level == i) { %>
                     <label>
                         <% if (spellslot.sps_state == 1) { %>
-                            <input class="border mx-1 hidden peer" type="checkbox" id="sps_state" onchange="change_spellslot_attribute(this)" data-spellslot="<%= spellslot.sps_id %>" checked>
+                            <input class="border hidden peer" type="checkbox" id="sps_state" onchange="change_spellslot_attribute(this)" data-spellslot="<%= spellslot.sps_id %>" checked>
                         <% } else { %>
-                            <input class="border mx-1 hidden peer" type="checkbox" id="sps_state" onchange="change_spellslot_attribute(this)" data-spellslot="<%= spellslot.sps_id %>">
+                            <input class="border hidden peer" type="checkbox" id="sps_state" onchange="change_spellslot_attribute(this)" data-spellslot="<%= spellslot.sps_id %>">
                         <% } %>
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
                     </label>
                 <% } %>
             <% }); %>
-            <button class="text-white rounded-lg px-0.5 ml-1 hover:opacity-70 hidden group-hover:inline-block" onclick="add_spellslot(this.value)" value="<%= i %> ">+</button>
+            <button class="text-white rounded-lg px-0.5 hover:opacity-70 hidden group-hover:inline-block ml-1" onclick="add_spellslot(this.value)" value="<%= i %> ">+</button>
             <button class="text-white rounded-lg px-0.5 hover:opacity-70 hidden group-hover:inline-block" onclick="delete_spellslot(this.value)" value="<%= i %> ">-</button>
         </div>
     <% } %>

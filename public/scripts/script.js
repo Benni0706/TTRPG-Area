@@ -319,11 +319,9 @@ function change_weapon_attribute(element, type) {
         }
         const xhttp = new XMLHttpRequest();
         let cha_id = document.getElementById('cha_id').value;
-        const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value + "&wea_id=" + element.getAttribute("data-weapon");
+        const params = "cha_id=" + cha_id + "&attribute=" + element.name + "&value=" + value + "&wea_id=" + element.getAttribute("data-weapon");
         xhttp.onload = function(){
-            if (type == 'bool' || type == 'int' || element.id == 'wea_attribute') {
-                get_weapons();
-            }
+            get_weapons();
         }
         xhttp.open("POST", "/change_weapon_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -340,6 +338,16 @@ function delete_weapon (wea_id) {
     xhttp.open("POST", "/delete_weapon", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
+}
+
+function save_weapon (wea_id) {
+    change_weapon_attribute(document.getElementById('wea_name' + wea_id));
+    change_weapon_attribute(document.getElementById('wea_range' + wea_id), 'int');
+    change_weapon_attribute(document.getElementById('wea_damage' + wea_id));
+    change_weapon_attribute(document.getElementById('wea_bonus' + wea_id), 'int');
+    change_weapon_attribute(document.getElementById('wea_proficiency' + wea_id), 'bool');
+    change_weapon_attribute(document.getElementById('wea_attribute' + wea_id));
+    change_weapon_attribute(document.getElementById('wea_properties' + wea_id));
 }
 
 function get_inventory() {

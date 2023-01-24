@@ -1,8 +1,8 @@
 <% if (typeof weapons != "undefined") { %>
     <% weapons.forEach( function(weapon) { %>
         <div class="p-1 m-1 rounded-lg bg-gray-400">
-            <input class="w-40 border text-center" type="text" value="<%= weapon.wea_name %>" id="wea_name" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
-            <input class="w-20 border text-center" type="text" value="<%= weapon.wea_range %>" id="wea_range" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
+            <input class="w-40 text-center bg-inherit" type="text" value="<%= weapon.wea_name %>" readonly>
+            <input class="w-20 text-center bg-inherit" type="text" value="<%= weapon.wea_range %>" readonly>
             <% let attr_mod %> 
             <% if (weapon.wea_attribute == 'Stärke') { %>
                 <% attr_mod = Math.trunc((weapon.cha_strength - 10) / 2) %>
@@ -31,25 +31,32 @@
                 if (weapon.cha_xp > 225000) {
                     prof_bonus = 6;
                 } %> 
-                <input class="w-20 border text-center" type="text" value="<%= prof_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
+                <input class="w-20 text-center bg-inherit" type="text" value="<%= prof_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
             <% } else { %> 
-                <input class="w-20 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+                <input class="w-20 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
             <% } %> 
-            <input class="w-16 border text-center" type="text" value="<%= weapon.wea_damage %>" id="wea_damage" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>">
-            <span class="text-white">+</span> 
-            <input class="w-10 border text-center" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
-            <input class="w-20 border text-center" type="text" value="<%= weapon.wea_bonus %>" id="wea_bonus" onchange="change_weapon_attribute(this, 'int')" data-weapon="<%= weapon.wea_id %>">
-            <button class="hover:opacity-80 font-bold text-white" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
+            <input class="w-16 text-center bg-inherit" type="text" value="<%= weapon.wea_damage %>" readonly>
+            <span>+</span> 
+            <input class="w-10 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
             <div id="weapon_edit_<%= weapon.wea_id %>" class="hidden my-2">
-                <div class="grid justify-items-start">
-                    <label class="text-white">Geübt im Umgang</label>
+                <div class="grid grid-cols-2 w-fit gap-1 justify-items-start">
+                    <label class="text-white col-span-1">Waffe</label>
+                    <input class="border col-span-1" type="text" value="<%= weapon.wea_name %>" name="wea_name" id="wea_name<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>">
+                    <label class="text-white col-span-1">Reichweite</label>
+                    <input class="border col-span-1" type="text" value="<%= weapon.wea_range %>" name="wea_range" id="wea_range<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>">
+                    <label class="text-white col-span-1">Schaden</label>
+                    <input class="border col-span-1" type="text" value="<%= weapon.wea_damage %>" name="wea_damage" id="wea_damage<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>">
+                    <label class="text-white col-span-1">Waffenbonus</label>
+                    <input class="border col-span-1" type="text" value="<%= weapon.wea_bonus %>" name="wea_bonus" id="wea_bonus<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>">
+                    <label class="text-white col-span-1">Geübt im Umgang</label>
                     <% if (weapon.wea_proficiency == 1) { %>
-                        <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>" checked>
+                        <input class="border col-span-1" type="checkbox" name="wea_proficiency" id="wea_proficiency<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>" checked>
                     <% } else { %>
-                        <input class="border mx-1" type="checkbox" id="wea_proficiency" onchange="change_weapon_attribute(this, 'bool')" data-weapon="<%= weapon.wea_id %>">
-                    <% } %><br>
-                    <label class="text-white">Waffen-Attribut</label>
-                    <select class="border mx-1" type="text" value="<%= weapon.wea_attribute %>" id="wea_attribute" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><br>
+                        <input class="border col-span-1" type="checkbox" name="wea_proficiency" id="wea_proficiency<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>">
+                    <% } %>
+                    <label class="text-white col-span-1">Waffen-Attribut</label>
+                    <select class="border col-span-1" type="text" value="<%= weapon.wea_attribute %>" name="wea_attribute" id="wea_attribute<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>"><br>
                         <option <% if (weapon.wea_attribute == 'Stärke') { %> selected <% } %>>Stärke</option>
                         <option <% if (weapon.wea_attribute == 'Geschicklichkeit') { %> selected <% } %>>Geschicklichkeit</option>
                         <option <% if (weapon.wea_attribute == 'Konstitution') { %> selected <% } %>>Konstitution</option>
@@ -58,8 +65,9 @@
                         <option <% if (weapon.wea_attribute == 'Charisma') { %> selected <% } %>>Charisma</option>
                     </select>
                 </div>
-                <label class="text-white">Eigenschaften</label>
-                <textarea class="w-full h-40 resize-none border my-1 p-1" id="wea_properties" onchange="change_weapon_attribute(this)" data-weapon="<%= weapon.wea_id %>"><%= weapon.wea_properties %></textarea>
+                <label class="text-white col-span-1">Eigenschaften</label>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" name="wea_properties" id="wea_properties<%= weapon.wea_id %>" data-weapon="<%= weapon.wea_id %>"><%= weapon.wea_properties %></textarea>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="save_weapon(this.value)" value="<%= weapon.wea_id %>">Waffe speichern</button>
                 <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_weapon(this.value)" value="<%= weapon.wea_id %>">Waffe löschen</button>
             </div>
         </div>
