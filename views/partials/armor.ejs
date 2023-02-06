@@ -9,42 +9,47 @@
     <% }); %> 
     <% armor.forEach( function(armor) { %>
         <div class="p-1 m-1 rounded-lg bg-gray-400">
-            <input class="w-40 border text-center" type="text" value="<%= armor.arm_name %>" id="arm_name" onchange="change_armor_attribute(this)" data-armor="<%= armor.arm_id %>">
-            <input class="w-20 border text-center" type="text" value="<%= armor.arm_rk %>" id="arm_rk" onchange="change_armor_attribute(this, 'int')" data-armor="<%= armor.arm_id %>">
+            <input class="w-40 text-center bg-inherit" type="text" value="<%= armor.arm_name %>" disabled>
+            <input class="w-20 text-center bg-inherit" type="text" value="<%= armor.arm_rk %>" disabled>
             <label class="mr-3 ml-2">
                 <% if (armor.arm_equipped == 1) { %>
-                    <input class="border mx-1 hidden peer" type="checkbox" id="arm_equipped" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>" checked>
+                    <input class="mx-1 hidden peer" type="checkbox" name="arm_equipped" id="arm_equipped<%= armor.arm_id %>" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>" checked>
                 <% } else { %>
-                    <input class="border mx-1 hidden peer" type="checkbox" id="arm_equipped" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>">
+                    <input class="mx-1 hidden peer" type="checkbox" name="arm_equipped" id="arm_equipped<%= armor.arm_id %>" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>">
                 <% } %>
                 <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
             </label>
-            <button class="hover:opacity-80 font-bold text-white" onclick="show_hide_element('armor_edit_' + this.value, 'block', this, '')" value="<%= armor.arm_id %>">&#8897</button>
+            <button class="hover:opacity-80 font-bold" onclick="show_hide_element('armor_edit_' + this.value, 'block', this, '')" value="<%= armor.arm_id %>">&#8897</button>
             <div id="armor_edit_<%= armor.arm_id %>" class="hidden my-2">
-                <div class="grid justify-items-start">
-                    <label class="text-white">Heimlichkeits-Nachteil</label>
+                <div class="grid grid-cols-2 w-fit gap-1 justify-items-start">
+                    <label class="text-white col-span-1">Rüstung</label>
+                    <input class="border w-40 col-span-1" type="text" value="<%= armor.arm_name %>" name="arm_name" id="arm_name<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>">
+                    <label class="text-white col-span-1">RK-Bonus</label>
+                    <input class="border w-10 col-span-1" type="text" value="<%= armor.arm_rk %>" name="arm_rk" id="arm_rk<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>">
+                    <label class="text-white col-span-1">Heimlichkeits-Nachteil</label>
                     <% if (armor.arm_secrecy == 1) { %>
-                        <input class="border mx-1" type="checkbox" id="arm_secrecy" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>" checked>
+                        <input class="border col-span-1" type="checkbox" name="arm_secrecy" id="arm_secrecy<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>" checked>
                     <% } else { %>
-                        <input class="border mx-1" type="checkbox" id="arm_secrecy" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>">
-                    <% } %><br>
-                    <label class="text-white">Art</label>
-                    <select class="border mx-1" type="text" value="<%= armor.arm_type %>" id="arm_type" onchange="change_armor_attribute(this)" data-armor="<%= armor.arm_id %>"><br>
+                        <input class="border col-span-1" type="checkbox" name="arm_secrecy" id="arm_secrecy<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>">
+                    <% } %>
+                    <label class="text-white col-span-1">Art</label>
+                    <select class="border col-span-1 w-40" type="text" value="<%= armor.arm_type %>" name="arm_type" id="arm_type<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>">
                         <option <% if (armor.arm_type == 'Leicht') { %> selected <% } %>>Leicht</option>
                         <option <% if (armor.arm_type == 'Mittelschwer') { %> selected <% } %>>Mittelschwer</option>
                         <option <% if (armor.arm_type == 'Schwer') { %> selected <% } %>>Schwer</option>
                         <option <% if (armor.arm_type == 'Schild') { %> selected <% } %>>Schild</option>
                     </select>
-                    <label class="text-white">Mindest-Stärke</label>
-                    <select class="border mx-1" type="text" value="<%= armor.arm_min_strength %>" id="arm_min_strength" onchange="change_armor_attribute(this)" data-armor="<%= armor.arm_id %>"><br>
+                    <label class="text-white col-span-1">Mindest-Stärke</label>
+                    <select class="border col-span-1 w-40" type="text" value="<%= armor.arm_min_strength %>" name="arm_min_strength" id="arm_min_strength<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>">
                         <option <% if (armor.arm_min_strength == '--') { %> selected <% } %>>--</option>
                         <option <% if (armor.arm_min_strength == '13') { %> selected <% } %>>13</option>
                         <option <% if (armor.arm_min_strength == '15') { %> selected <% } %>>15</option>
                     </select>
                 </div>
                 <label class="text-white">Eigenschaften</label>
-                <textarea class="w-full h-40 resize-none border my-1 p-1" id="arm_properties" onchange="change_armor_attribute(this)" data-armor="<%= armor.arm_id %>"><%= armor.arm_properties %></textarea>
-                <button class="bg-res-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_armor(this.value)" value="<%= armor.arm_id %>">Rüstung löschen</button>
+                <textarea class="w-full h-40 resize-none border my-1 p-1" name="arm_properties" id="arm_properties<%= armor.arm_id %>" data-armor="<%= armor.arm_id %>"><%= armor.arm_properties %></textarea>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="save_armor(this.value)" value="<%= armor.arm_id %>">Rüstung speichern</button>
+                <button class="bg-red-600 hover:bg-red-800 rounded-lg p-1 m-2" onclick="delete_armor(this.value)" value="<%= armor.arm_id %>">Rüstung löschen</button>
             </div>
         </div>
     <% }); %>

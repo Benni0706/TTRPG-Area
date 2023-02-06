@@ -252,9 +252,9 @@ function change_armor_attribute(element, type) {
         }
         const xhttp = new XMLHttpRequest();
         let cha_id = document.getElementById('cha_id').value;
-        const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value + "&arm_id=" + element.getAttribute("data-armor");
+        const params = "cha_id=" + cha_id + "&attribute=" + element.name + "&value=" + value + "&arm_id=" + element.getAttribute("data-armor");
         xhttp.onload = function(){
-            if (type == 'bool' || type == 'int' || element.id == 'arm_type') {
+            if (type == 'bool' || type == 'int' || element.name == 'arm_type') {
                 get_armor();
             }
         }
@@ -273,6 +273,15 @@ function delete_armor (arm_id) {
     xhttp.open("POST", "/delete_armor", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
+}
+
+function save_armor (arm_id) {
+    change_armor_attribute(document.getElementById('arm_name' + arm_id));
+    change_armor_attribute(document.getElementById('arm_rk' + arm_id), 'int');
+    change_armor_attribute(document.getElementById('arm_secrecy' + arm_id), 'bool');
+    change_armor_attribute(document.getElementById('arm_type' + arm_id));
+    change_armor_attribute(document.getElementById('arm_min_strength' + arm_id), 'int');
+    change_armor_attribute(document.getElementById('arm_properties' + arm_id));
 }
 
 function get_weapons() {

@@ -1,8 +1,8 @@
 <% if (typeof weapons != "undefined") { %>
     <% weapons.forEach( function(weapon) { %>
         <div class="p-1 m-1 rounded-lg bg-gray-400">
-            <input class="w-40 text-center bg-inherit" type="text" value="<%= weapon.wea_name %>" readonly>
-            <input class="w-20 text-center bg-inherit" type="text" value="<%= weapon.wea_range %>" readonly>
+            <input class="w-40 text-center bg-inherit" type="text" value="<%= weapon.wea_name %>" disabled>
+            <input class="w-20 text-center bg-inherit" type="text" value="<%= weapon.wea_range %>" disabled>
             <% let attr_mod %> 
             <% if (weapon.wea_attribute == 'Stärke') { %>
                 <% attr_mod = Math.trunc((weapon.cha_strength - 10) / 2) %>
@@ -31,13 +31,13 @@
                 if (weapon.cha_xp > 225000) {
                     prof_bonus = 6;
                 } %> 
-                <input class="w-20 text-center bg-inherit" type="text" value="<%= prof_bonus +  attr_mod + weapon.wea_bonus %>" readonly>
+                <input class="w-20 text-center bg-inherit" type="text" value="<%= prof_bonus +  attr_mod + weapon.wea_bonus %>" disabled>
             <% } else { %> 
-                <input class="w-20 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+                <input class="w-20 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" disabled>
             <% } %> 
-            <input class="w-16 text-center bg-inherit" type="text" value="<%= weapon.wea_damage %>" readonly>
+            <input class="w-16 text-center bg-inherit" type="text" value="<%= weapon.wea_damage %>" disabled>
             <span>+</span> 
-            <input class="w-10 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" readonly>
+            <input class="w-10 text-center bg-inherit" type="text" value="<%= attr_mod + weapon.wea_bonus %>" disabled>
             <button class="hover:opacity-80 font-bold" onclick="show_hide_element('weapon_edit_' + this.value, 'block', this, '')" value="<%= weapon.wea_id %>">&#8897</button>
             <div id="weapon_edit_<%= weapon.wea_id %>" class="hidden my-2">
                 <div class="grid grid-cols-2 w-fit gap-1 justify-items-start">
