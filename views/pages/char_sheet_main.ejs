@@ -41,7 +41,7 @@
             </div>
             <div class="col-span-1 grid justify-items-center">
                 <label class="text-white">Charakterstufe</label>
-                <input type="text" class="rounded-lg px-1 w-16 text-center" id="character_level" readonly>     
+                <input type="text" class="rounded-lg px-1 w-16 text-center bg-gray-400" id="character_level" readonly>     
             </div>
             <div class="col-span-1 grid justify-items-center">
                 <label class="text-white">Erfahrungspunkte</label>
@@ -62,22 +62,22 @@
             <div class="col-span-1 bg-zinc-900 p-2 m-3 rounded-lg justify-items-center grid min-w-min h-min">
                 <p class="text-center text-white">Stärke</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_strength" value="<%= character.cha_strength %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="strength_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="strength_mod" readonly>
                 <p class="text-center text-white">Geschicklichkeit</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_dexterity" value="<%= character.cha_dexterity %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="dexterity_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="dexterity_mod" readonly>
                 <p class="text-center text-white">Konstitution</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_constitution" value="<%= character.cha_constitution %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="constitution_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="constitution_mod" readonly>
                 <p class="text-center text-white">Intelligenz</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_intelligence" value="<%= character.cha_intelligence %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="intelligence_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="intelligence_mod" readonly>
                 <p class="text-center text-white">Weisheit</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_wisdom" value="<%= character.cha_wisdom %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="wisdom_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="wisdom_mod" readonly>
                 <p class="text-center text-white">Charisma</p>
                 <input class="w-10 text-center rounded-lg" type="text" id="cha_charism" value="<%= character.cha_charism %>" onchange="change_attribute(this, 'int')">
-                <input class="w-6 text-center rounded-lg mt-0.5 mb-2" type="text" id="charism_mod" readonly>
+                <input class="w-6 text-center rounded-lg mt-0.5 mb-2 bg-gray-400" type="text" id="charism_mod" readonly>
             </div>
             <div class="col-span-2 min-w-min">
                 <div class="p-2 m-3 bg-zinc-900 rounded-lg min-w-min grid justify-center">
@@ -89,7 +89,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_strength_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="strength_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="strength_save" readonly>
                         Stärke
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -99,7 +99,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_dexterity_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="dexterity_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="dexterity_save" readonly>
                         Geschicklichkeit
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -109,7 +109,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_constitution_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="constitution_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="constitution_save" readonly>
                         Konstitution
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -119,7 +119,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_intelligence_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="intelligence_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="intelligence_save" readonly>
                         Intelligenz
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -129,7 +129,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_wisdom_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="wisdom_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="wisdom_save" readonly>
                         Weisheit
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -139,7 +139,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_charism_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="charism_save" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="charism_save" readonly>
                         Charisma
                     </label>
                 </div>
@@ -152,7 +152,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_acrobatics_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="acrobatics" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="acrobatics" readonly>
                         Akrobatik (Ges)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -162,7 +162,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_arcane_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="arcane" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="arcane" readonly>
                         Arkane Kunde (Int)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -172,7 +172,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_athletics_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="athletics" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="athletics" readonly>
                         Athletik (Stä)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -182,7 +182,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_performance_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="performance" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="performance" readonly>
                         Auftreten (Cha)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -192,7 +192,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_intimidation_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="intimidation" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="intimidation" readonly>
                         Einschüchtern (Cha)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -202,7 +202,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_sleight_of_hand_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="sleight_of_hand" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="sleight_of_hand" readonly>
                         Fingerfertigkeit (Ges)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -212,7 +212,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_history_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="history" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="history" readonly>
                         Geschichte (Int)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -222,7 +222,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_medicine_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="medicine" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="medicine" readonly>
                         Heilkunde (Wei)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -232,7 +232,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_stealth_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="stealth" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="stealth" readonly>
                         Heimlichkeit (Ges)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -242,7 +242,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_animal_handling_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="animal_handling" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="animal_handling" readonly>
                         Mit Tieren umgehen (Wei)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -252,7 +252,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_insight_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="insight" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="insight" readonly>
                         Motiv erkennen (Wei)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -262,7 +262,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_investigation_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="investigation" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="investigation" readonly>
                         Nachforschungen (Int)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -272,7 +272,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_nature_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="nature" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="nature" readonly>
                         Naturkunde (Int)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -282,7 +282,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_religion_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="religion" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="religion" readonly>
                         Religion (Int)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -292,7 +292,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_deception_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="deception" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="deception" readonly>
                         Täuschen (Cha)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -302,7 +302,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_survival_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="survival" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="survival" readonly>
                         Überlebenskunst (Wei)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -312,7 +312,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_persuasion_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="persuasion" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="persuasion" readonly>
                         Überzeugen (Cha)
                     </label>
                     <label class="text-white mb-1 min-w-min">
@@ -322,7 +322,7 @@
                             <input class="hidden peer" type="checkbox" id="cha_perception_prof" onchange="change_attribute(this, 'bool')">
                         <% } %> 
                         <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
-                        <input class="ml-1 w-6 text-center rounded-lg text-black" type="text" id="perception" readonly>
+                        <input class="ml-1 w-6 text-center rounded-lg text-black bg-gray-400" type="text" id="perception" readonly>
                         Wahrnehmung (Wei)
                     </label>
                 </div>
@@ -339,7 +339,7 @@
                         Inspiration
                     </label>
                     <div class="justify-items-center grid col-span-1">
-                        <input class="rounded-lg w-10 text-center" type="text" id="armor_class" readonly>
+                        <input class="rounded-lg w-10 text-center bg-gray-400" type="text" id="armor_class" readonly>
                         <label class="text-white">Rüstungsklasse</label>
                     </div>
                     <div class="justify-items-center grid col-span-1">
@@ -397,11 +397,11 @@
                             </div>
                             <div class="col-span-1 grid justify-items-center">
                                 <label class="text-white">Zauber-RW-SG</label>
-                                <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_rw_sg" readonly>
+                                <input type="text" class="rounded-lg px-1 w-40 text-center bg-gray-400" id="spell_rw_sg" readonly>
                             </div>
                             <div class="col-span-1 grid justify-items-center">
                                 <label class="text-white">Zauber-Angriffsbonus</label>                                
-                                <input type="text" class="rounded-lg px-1 w-40 text-center" id="spell_attack_bonus" readonly>
+                                <input type="text" class="rounded-lg px-1 w-40 text-center bg-gray-400" id="spell_attack_bonus" readonly>
                             </div>
                         </div>
                             <div id="spellslots">
