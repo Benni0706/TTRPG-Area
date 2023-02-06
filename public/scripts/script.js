@@ -75,7 +75,7 @@ function change_attribute(element, type) {
         let cha_id = document.getElementById('cha_id').value;
         const params = "cha_id=" + cha_id + "&attribute=" + element.id + "&value=" + value;
         xhttp.onload = function(){
-            
+            get_other_tables();
         }
         xhttp.open("POST", "/change_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
