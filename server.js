@@ -42,7 +42,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname + '/views'));
 
-console.log(path.join(__dirname, 'routes/*.js'));
 glob.sync(path_routes).forEach( function(file) {
     require(path.resolve(file))(app, connection);
 });
