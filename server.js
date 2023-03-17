@@ -42,21 +42,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname + '/views'));
 
+const router = express.Router();
+
 glob.sync(path_routes).forEach( function(file) {
-    require(path.resolve(file))(app, connection);
+    require(path.resolve(file))(router, connection);
 });
 
-app.get('/', function (req, res) {
-    res.render('./pages/home', {
-        logged_in: req.session.logged_in,
-        username: req.session.username,
-    });
-
-});
-
-app.get('/error', function (req, res) {
-    res.send('Es ist ein Fehler aufgetreten');
-});
+app.use('/ttrpg-area', router);
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);

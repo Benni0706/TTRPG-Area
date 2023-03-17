@@ -7,7 +7,7 @@ function show_party (party_id) {
         document.getElementById('partycode').innerHTML = 'Beitrittscode: ' + document.getElementById('party_code_tmp' + party_id).getAttribute('value');
         document.getElementById('partyid').setAttribute('value', party_id);
     }
-    xhttp.open("POST", "/appointer", true);
+    xhttp.open("POST", "/ttrpg-area/appointer", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -18,7 +18,7 @@ function commit (status, dat_id) {
     xhttp.onload = function(){
         show_party(document.getElementById('partyid').getAttribute('value'));
     }
-    xhttp.open("POST", "/commit", true);
+    xhttp.open("POST", "/ttrpg-area/commit", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -47,7 +47,7 @@ function add_date() {
     xhttp.onload = function(){
         show_party(partyid);
     }
-    xhttp.open("POST", "/add_date", true);
+    xhttp.open("POST", "/ttrpg-area/add_date", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -77,7 +77,7 @@ function change_attribute(element, type) {
         xhttp.onload = function(){
             get_other_tables();
         }
-        xhttp.open("POST", "/change_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -113,7 +113,7 @@ function get_spells() {
     xhttp.onload = function(){
         document.getElementById('spells_partial_div').innerHTML = this.responseText;
     }
-    xhttp.open("POST", "/get_spells", true);
+    xhttp.open("POST", "/ttrpg-area/get_spells", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -124,7 +124,7 @@ function add_spell() {
     xhttp.onload = function(){
         get_spells();
     }
-    xhttp.open("POST", "/add_spell", true);
+    xhttp.open("POST", "/ttrpg-area/add_spell", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -154,7 +154,7 @@ function change_spell_attribute(element, type) {
         xhttp.onload = function(){
             get_spells();
         }
-        xhttp.open("POST", "/change_spell_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_spell_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -166,7 +166,7 @@ function delete_spell (spe_id) {
     xhttp.onload = function(){
         get_spells();
     }
-    xhttp.open("POST", "/delete_spell", true);
+    xhttp.open("POST", "/ttrpg-area/delete_spell", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -215,7 +215,7 @@ function get_armor() {
         }
         document.getElementById('armor_class').value = rk_value + 10 + dex_mod + +document.getElementById('cha_armor_bonus').value;
     }
-    xhttp.open("POST", "/get_armor", true);
+    xhttp.open("POST", "/ttrpg-area/get_armor", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -226,7 +226,7 @@ function add_armor() {
     xhttp.onload = function(){
         get_armor();
     }
-    xhttp.open("POST", "/add_armor", true);
+    xhttp.open("POST", "/ttrpg-area/add_armor", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -258,7 +258,7 @@ function change_armor_attribute(element, type) {
                 get_armor();
             }
         }
-        xhttp.open("POST", "/change_armor_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_armor_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -270,7 +270,7 @@ function delete_armor (arm_id) {
     xhttp.onload = function(){
         get_armor();
     }
-    xhttp.open("POST", "/delete_armor", true);
+    xhttp.open("POST", "/ttrpg-area/delete_armor", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -291,7 +291,7 @@ function get_weapons() {
     xhttp.onload = function(){
         document.getElementById('weapons').innerHTML = this.responseText;
     }
-    xhttp.open("POST", "/get_weapons", true);
+    xhttp.open("POST", "/ttrpg-area/get_weapons", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -302,7 +302,7 @@ function add_weapon() {
     xhttp.onload = function(){
         get_weapons();
     }
-    xhttp.open("POST", "/add_weapon", true);
+    xhttp.open("POST", "/ttrpg-area/add_weapon", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -332,7 +332,7 @@ function change_weapon_attribute(element, type) {
         xhttp.onload = function(){
             get_weapons();
         }
-        xhttp.open("POST", "/change_weapon_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_weapon_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -344,7 +344,7 @@ function delete_weapon (wea_id) {
     xhttp.onload = function(){
         get_weapons();
     }
-    xhttp.open("POST", "/delete_weapon", true);
+    xhttp.open("POST", "/ttrpg-area/delete_weapon", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -366,7 +366,7 @@ function get_inventory() {
     xhttp.onload = function(){
         document.getElementById('inventory').innerHTML = this.responseText;
     }
-    xhttp.open("POST", "/get_inventory", true);
+    xhttp.open("POST", "/ttrpg-area/get_inventory", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -377,7 +377,7 @@ function add_inventory() {
     xhttp.onload = function(){
         get_inventory();
     }
-    xhttp.open("POST", "/add_inventory", true);
+    xhttp.open("POST", "/ttrpg-area/add_inventory", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -409,7 +409,7 @@ function change_inventory_attribute(element, type) {
                 get_inventory();
             }
         }
-        xhttp.open("POST", "/change_inventory_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_inventory_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -421,7 +421,7 @@ function delete_inventory (inv_id) {
     xhttp.onload = function(){
         get_inventory();
     }
-    xhttp.open("POST", "/delete_inventory", true);
+    xhttp.open("POST", "/ttrpg-area/delete_inventory", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -433,7 +433,7 @@ function get_talents() {
     xhttp.onload = function(){
         document.getElementById('talents').innerHTML = this.responseText;
     }
-    xhttp.open("POST", "/get_talents", true);
+    xhttp.open("POST", "/ttrpg-area/get_talents", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -444,7 +444,7 @@ function add_talent() {
     xhttp.onload = function(){
         get_talents();
     }
-    xhttp.open("POST", "/add_talent", true);
+    xhttp.open("POST", "/ttrpg-area/add_talent", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -476,7 +476,7 @@ function change_talent_attribute(element, type) {
                 get_talents();
             }
         }
-        xhttp.open("POST", "/change_talent_attribute", true);
+        xhttp.open("POST", "/ttrpg-area/change_talent_attribute", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(params);
     }
@@ -488,7 +488,7 @@ function delete_talent (tal_id) {
     xhttp.onload = function(){
         get_talents();
     }
-    xhttp.open("POST", "/delete_talent", true);
+    xhttp.open("POST", "/ttrpg-area/delete_talent", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -500,7 +500,7 @@ function get_spellslots() {
     xhttp.onload = function(){
         document.getElementById('spellslots').innerHTML = this.responseText;
     }
-    xhttp.open("POST", "/get_spellslots", true);
+    xhttp.open("POST", "/ttrpg-area/get_spellslots", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -511,7 +511,7 @@ function add_spellslot(level) {
     xhttp.onload = function(){
         get_spellslots();
     }
-    xhttp.open("POST", "/add_spellslot", true);
+    xhttp.open("POST", "/ttrpg-area/add_spellslot", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -528,7 +528,7 @@ function change_spellslot_attribute(element) {
     xhttp.onload = function(){
         get_spellslots();
     }
-    xhttp.open("POST", "/change_spellslot_attribute", true);
+    xhttp.open("POST", "/ttrpg-area/change_spellslot_attribute", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }
@@ -539,7 +539,7 @@ function delete_spellslot (sps_level) {
     xhttp.onload = function(){
         get_spellslots();
     }
-    xhttp.open("POST", "/delete_spellslot", true);
+    xhttp.open("POST", "/ttrpg-area/delete_spellslot", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(params);
 }

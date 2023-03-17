@@ -16,16 +16,16 @@ module.exports = function(app, connection) {
                     req.session.logged_in = true;
                     req.session.username = results[0].acc_name;
                     req.session.userid = results[0].acc_id;
-                    res.redirect('/');
+                    res.redirect('/ttrpg-area');
                 } else {
                     req.session.username = username;
-                    res.redirect('/login');
+                    res.redirect('/ttrpg-area/login');
                 }
                 res.end;
             });
         } else {
             req.session.username = username;
-            res.redirect('/login');
+            res.redirect('/ttrpg-area/login');
         }
     });
     
@@ -41,7 +41,7 @@ module.exports = function(app, connection) {
         if (username && mail && password1 && password1 == password2) {
             connection.query('INSERT INTO accounts (acc_name,acc_mail,acc_password) VALUES (?,?,?)', [username, mail, password1], function (error, results, fields) {
                 if (error) throw error;
-                res.redirect('/login');
+                res.redirect('/ttrpg-area/login');
             });
         }
     });
@@ -50,7 +50,7 @@ module.exports = function(app, connection) {
         req.session.logged_in = false;
         req.session.username = undefined;
         req.session.userid = undefined;
-        res.redirect('/');
+        res.redirect('/ttrpg-area');
     });
 
 }

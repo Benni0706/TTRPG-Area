@@ -11,7 +11,7 @@ module.exports = function(app, connection) {
                 });
             });
         } else {
-            res.redirect('/login');
+            res.redirect('/ttrpg-area/login');
         }
     });
     
@@ -20,7 +20,7 @@ module.exports = function(app, connection) {
             if (req.body.char_name) {
                 connection.query('INSERT INTO characters (cha_name, cha_acc_id) VALUES (?, ?)', [req.body.char_name, req.session.userid], function(error, results, fields) {
                     if (error) throw error;
-                    res.redirect('/charsheet_choose');
+                    res.redirect('/ttrpg-area/charsheet_choose');
                 });
             } else {
                 res.end();
@@ -43,7 +43,7 @@ module.exports = function(app, connection) {
                             character: results[0],
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {
@@ -67,7 +67,7 @@ module.exports = function(app, connection) {
                             res.end();
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {

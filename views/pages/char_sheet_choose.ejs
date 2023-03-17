@@ -17,7 +17,7 @@
         <div class="grid justify-center bg-zinc-900 p-8 rounded-lg row-start-2 row-end-4 w-min h-min">
             <span class="text-white text-2xl text-center">Deine Charaktere:</span>
             <% characters.forEach(function(character) { %>
-                <form class="grid justify-items-center" action="/charsheet_main" method="post">
+                <form class="grid justify-items-center" action="/ttrpg-area/charsheet_main" method="post">
                     <input type="hidden" id="cha_id" name="cha_id" value="<%= character.cha_id %>">
                     <input type="submit" class="text-white hover:text-opacity-50 rounded-lg text-xl m-0.5" value="<%= character.cha_name %> &#10132">
                 </form>
@@ -27,7 +27,7 @@
             <% } %>
             <hr class="mt-6">
             <span class="text-white text-xl mt-6 text-center">Oder erstelle einen neuen Charakter:</span>
-            <form class="mt-2 grid justify-center" action="/create_char" method="post">
+            <form class="mt-2 grid justify-center" action="/ttrpg-area/create_char" method="post">
                 <label class="text-white text-xl" for="char_name">Name</label>
                 <input class="bg-white" type="text" id="char_name" name="char_name" required><br>
                 <input class="bg-red-600 rounded-lg text-xl p-1 mt-2 hover:bg-red-800" type="submit" value="Erstellen">

@@ -12,7 +12,7 @@ module.exports = function(app, connection) {
                 });
             });
         } else {
-            res.redirect('/login');
+            res.redirect('/ttrpg-area/login');
         }
     });
     
@@ -23,7 +23,7 @@ module.exports = function(app, connection) {
                 get_commitments(results, req, res);
             });
         } else {
-            res.redirect('/login');
+            res.redirect('/ttrpg-area/login');
         }
     });
     
@@ -80,7 +80,7 @@ module.exports = function(app, connection) {
                     var par_id = results[0].par_id;
                     connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [req.session.userid,par_id], function(error, results, fields) {
                         if (error) throw error;
-                        res.redirect('/appointer');
+                        res.redirect('/ttrpg-area/appointer');
                     });
                 });
             }
@@ -98,7 +98,7 @@ module.exports = function(app, connection) {
                     let par_id = results[0].par_id;
                     connection.query('INSERT INTO members (mem_acc_id,mem_par_id) VALUES (?,?)', [req.session.userid,par_id], function(error, results, fields) {
                         if (error) throw error;
-                        res.redirect('/appointer');
+                        res.redirect('/ttrpg-area/appointer');
                     });
                 });
             }
@@ -113,7 +113,7 @@ module.exports = function(app, connection) {
             if (req.body.partyid) {
                 connection.query('DELETE FROM members WHERE mem_acc_id = ? AND mem_par_id = ?', [req.session.userid,req.body.partyid], function(error, results, fields) {
                     if (error) throw error;
-                    res.redirect('/appointer');
+                    res.redirect('/ttrpg-area/appointer');
                     connection.query('SELECT COUNT(*) FROM members WHERE mem_par_id = ?', [req.body.partyid], function(error, results, fields) {
                         if (error) throw error;
                         if (results[0]['COUNT(*)'] == 0) {
@@ -124,7 +124,7 @@ module.exports = function(app, connection) {
                     });
                 });
             } else {
-                res.redirect("/error");
+                res.redirect("/ttrpg-area/error");
             } 
         }
         else {

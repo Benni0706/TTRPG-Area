@@ -13,7 +13,7 @@ module.exports = function(app, connection) {
                             });
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {
@@ -36,7 +36,7 @@ module.exports = function(app, connection) {
                             res.end();
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {
@@ -60,7 +60,7 @@ module.exports = function(app, connection) {
                             res.end();
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {
@@ -83,7 +83,7 @@ module.exports = function(app, connection) {
                             res.end();
                         });
                     } else {
-                        res.redirect('/error');
+                        res.redirect('/ttrpg-area/error');
                     }
                 });
             } else {
