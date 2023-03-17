@@ -940,8 +940,8 @@ video {
   background-color: inherit;
 }
 
-.bg-\[url\(\'\/CheckboxEmpty\.png\'\)\] {
-  background-image: url('/CheckboxEmpty.png');
+.bg-\[url\(\'\/ttrpg-area/CheckboxEmpty\.png\'\)\] {
+  background-image: url('/ttrpg-area/CheckboxEmpty.png');
 }
 
 .bg-contain {
@@ -1113,8 +1113,8 @@ video {
   text-decoration-line: underline;
 }
 
-.peer:checked ~ .peer-checked\:bg-\[url\(\'\/CheckboxCrossed\.png\'\)\] {
-  background-image: url('/CheckboxCrossed.png');
+.peer:checked ~ .peer-checked\:bg-\[url\(\'\/ttrpg-area/CheckboxCrossed\.png\'\)\] {
+  background-image: url('/ttrpg-area/CheckboxCrossed.png');
 }
 
 @media (min-width: 1024px) {

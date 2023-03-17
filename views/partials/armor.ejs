@@ -17,7 +17,7 @@
                 <% } else { %>
                     <input class="mx-1 hidden peer" type="checkbox" name="arm_equipped" id="arm_equipped<%= armor.arm_id %>" onchange="change_armor_attribute(this, 'bool')" data-armor="<%= armor.arm_id %>">
                 <% } %>
-                <span class="pl-4 bg-[url('/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/CheckboxCrossed.png')]"></span>
+                <span class="pl-4 bg-[url('/ttrpg-area/CheckboxEmpty.png')] bg-contain bg-no-repeat bg-left peer-checked:bg-[url('/ttrpg-area/CheckboxCrossed.png')]"></span>
             </label>
             <button class="hover:opacity-80 font-bold" onclick="show_hide_element('armor_edit_' + this.value, 'block', this, '')" value="<%= armor.arm_id %>">&#8897</button>
             <div id="armor_edit_<%= armor.arm_id %>" class="hidden my-2">
