@@ -31,7 +31,7 @@ app.set('view engine', 'ejs');
 app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'dist')));
 app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'scripts')));
 app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'images')));
-app.use('/ttrpg-area', favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(session({
     secret: 'bennissecret',
     resave: true,
