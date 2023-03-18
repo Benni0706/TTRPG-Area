@@ -2,7 +2,12 @@
 module.exports = {
   content: ['./views/**/*.{ejs,html,js}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'checkboxEmpty': "url('/ttrpg-area/CheckboxEmpty.png')",
+        'checkboxCrossed': "url('/ttrpg-area/CheckboxCrossed.png')",
+      }
+    },
   },
   plugins: [],
 }

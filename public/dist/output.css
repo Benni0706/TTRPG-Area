@@ -944,6 +944,10 @@ video {
   background-image: url('/ttrpg-area/CheckboxEmpty.png');
 }
 
+.bg-checkboxEmpty {
+  background-image: url('/ttrpg-area/CheckboxEmpty.png');
+}
+
 .bg-contain {
   background-size: contain;
 }
@@ -1114,6 +1118,10 @@ video {
 }
 
 .peer:checked ~ .peer-checked\:bg-\[url\(\'\/ttrpg-area\/CheckboxCrossed\.png\'\)\] {
+  background-image: url('/ttrpg-area/CheckboxCrossed.png');
+}
+
+.peer:checked ~ .peer-checked\:bg-checkboxCrossed {
   background-image: url('/ttrpg-area/CheckboxCrossed.png');
 }
 

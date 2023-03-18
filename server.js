@@ -28,7 +28,7 @@ const connection = mysql.createConnection({
 });
 
 app.set('view engine', 'ejs');
-app.use('/ttrpg-area', express.static(path.join(__dirname, 'dist')));
+app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'dist')));
 app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'scripts')));
 app.use('/ttrpg-area', express.static(path.join(__dirname, 'public', 'images')));
 app.use('/ttrpg-area', favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
